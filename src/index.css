@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-navy: #0A192F;
+    --color-navy-dark: #06101E;
+    --color-navy-light: #162B4D;
+    --color-orange: #FF6B35;
+    --color-orange-dark: #E8551E;
+    --color-orange-light: #FF8759;
+    --color-offwhite: #FAF9F6;
+    --color-sand: #F3F1EC;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    background-color: #FAF9F6;
+    color: #0A192F;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgba(255, 107, 53, 0.25);
+    color: #0A192F;
+  }
+}
+
+.font-serif-editorial {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Subtle dot background pattern */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(10, 25, 47, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 25, 47, 0.04) 1px, transparent 1px);
+}
+
+.bg-grid-pattern-dark {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(255, 107, 53, 0.08) 0%, transparent 70%);
+}
+
+/* Custom crisp scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3F1EC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+

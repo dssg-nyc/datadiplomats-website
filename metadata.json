@@ -1,0 +1,6 @@
+{
+  "name": "Data Diplomats for Nonprofits",
+  "description": "The Ode of Nonprofits — implementing frontier AI for charities, NGOs, and mission-driven institutions with ethical innovation, interactive case studies, and scalable architectures.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
