@@ -37,7 +37,7 @@ Subsystems & Connectors:
 ${currentPainPoint.components.map((c) => `- ${c}`).join('\n')}
 
 Generated via Data Diplomats for Nonprofits (The Ode of Nonprofits)
-https://ais-dev-tu57qjas5btjythdqg52kt-585790079879.us-east1.run.app`;
+https://www.datadiplomats.org`;
 
     navigator.clipboard.writeText(blueprintText);
     setCopied(true);
