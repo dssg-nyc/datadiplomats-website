@@ -21,7 +21,7 @@ export const Hero: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-svh flex-col justify-end overflow-hidden pt-28"
+      className="relative flex min-h-[88svh] flex-col justify-end overflow-hidden pt-24"
     >
       <motion.div
         aria-hidden
@@ -36,23 +36,27 @@ export const Hero: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
 
       <motion.div
         style={reduced ? undefined : { opacity, y: lift }}
-        className="shell relative flex grow flex-col justify-end pb-10"
+        className="shell relative flex grow flex-col pb-10"
       >
+        {/* Meta row sits high on the page; the headline anchors to the fold. */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: EASE_OUT }}
-          className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2"
+          className="flex flex-col justify-between gap-6 sm:flex-row sm:items-start"
         >
           <span className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-tomato" />
             <span className="eyebrow">501(c)(3) · New York City</span>
           </span>
-          <span aria-hidden className="hidden h-px w-8 bg-cola/20 sm:block" />
-          <span className="eyebrow">Membership open for the 2026 cohort</span>
+          <span className="eyebrow leading-relaxed sm:text-right">
+            Membership open for the 2026 cohort
+            <br />
+            <span className="text-tomato">90% use AI. 10% see the value.</span>
+          </span>
         </motion.div>
 
-        <h1 className="display max-w-[22ch]">
+        <h1 className="display mt-auto max-w-[22ch] pt-16">
           <SplitText
             as="span"
             text="The AI membership"

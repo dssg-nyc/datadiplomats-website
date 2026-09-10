@@ -27,7 +27,7 @@ export const Footer: React.FC = () => (
   <footer className="relative overflow-hidden border-t border-bone/12 bg-ink text-bone">
     <div className="shell py-16 sm:py-20">
       <div className="grid gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-5">
+        <Reveal className="lg:col-span-5">
           <Logo invert size={34} />
           <p className="mono-label mt-6 max-w-xs text-bone/55">
             {ORG.legal} — a 501(c)(3) putting frontier AI to work inside the
@@ -39,32 +39,34 @@ export const Footer: React.FC = () => (
           >
             {CONTACT_EMAIL}
           </a>
-        </div>
+        </Reveal>
 
-        {COLUMNS.map((column) => (
-          <nav key={column.heading} className="lg:col-span-2">
-            <span className="eyebrow text-bone/40">{column.heading}</span>
-            <ul className="mt-5 flex flex-col gap-3">
-              {column.links.map((link) => (
-                <li key={link.id}>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      document
-                        .getElementById(link.id)
-                        ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                    }
-                    className="mono-label link-draw cursor-pointer text-bone/70 transition-colors hover:text-bone"
-                  >
-                    {link.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
+        {COLUMNS.map((column, i) => (
+          <Reveal key={column.heading} delay={0.08 * (i + 1)} className="lg:col-span-2">
+            <nav>
+              <span className="eyebrow text-bone/40">{column.heading}</span>
+              <ul className="mt-5 flex flex-col gap-3">
+                {column.links.map((link) => (
+                  <li key={link.id}>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        document
+                          .getElementById(link.id)
+                          ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                      }
+                      className="mono-label link-draw cursor-pointer text-bone/70 transition-colors hover:text-bone"
+                    >
+                      {link.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </Reveal>
         ))}
 
-        <div className="lg:col-span-3">
+        <Reveal delay={0.24} className="lg:col-span-3">
           <span className="eyebrow text-bone/40">Say hello</span>
           <p className="mono-label mt-5 text-bone/60">
             Email us with your organization, your role, and the work that eats your
@@ -78,7 +80,7 @@ export const Footer: React.FC = () => (
           >
             Book a call
           </a>
-        </div>
+        </Reveal>
       </div>
 
       <div className="mt-16 flex flex-col gap-4 border-t border-bone/12 pt-8 sm:flex-row sm:items-center sm:justify-between">
@@ -89,17 +91,18 @@ export const Footer: React.FC = () => (
       </div>
     </div>
 
-    <Reveal className="relative">
+    {/* Oversized wordmark, cropped by the bottom of the page. */}
+    <div className="relative h-[9.5vw] overflow-hidden">
       <motion.span
         aria-hidden
-        initial={{ y: '32%' }}
-        whileInView={{ y: '18%' }}
+        initial={{ y: '22%', opacity: 0 }}
+        whileInView={{ y: '-8%', opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-        className="block select-none whitespace-nowrap px-[1vw] text-center text-[13.6vw] leading-none tracking-[-0.045em] text-bone/8"
+        className="block w-full select-none whitespace-nowrap text-center text-[13.2vw] leading-none tracking-[-0.045em] text-bone/12"
       >
         Data Diplomats
       </motion.span>
-    </Reveal>
+    </div>
   </footer>
 );
