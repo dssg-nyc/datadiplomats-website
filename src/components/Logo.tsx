@@ -10,7 +10,7 @@ interface LogoProps {
 
 export const Logo: React.FC<LogoProps> = ({
   className = '',
-  size = 30,
+  size = 32,
   showText = true,
   invert = false,
 }) => (
@@ -26,15 +26,15 @@ export const Logo: React.FC<LogoProps> = ({
     {showText && (
       <span className="flex flex-col leading-none">
         <span
-          className={`text-[0.9375rem] tracking-[-0.02em] ${
-            invert ? 'text-bone' : 'text-cola'
+          className={`font-display text-[1.0625rem] font-semibold tracking-[-0.01em] ${
+            invert ? 'text-white' : 'text-navy'
           }`}
         >
           Data Diplomats
         </span>
         <span
-          className={`mt-1 font-mono text-[0.5625rem] uppercase tracking-[0.14em] ${
-            invert ? 'text-bone/55' : 'text-cola/45'
+          className={`mt-1 text-[0.5625rem] font-semibold uppercase tracking-[0.16em] ${
+            invert ? 'text-white/60' : 'text-slate-500'
           }`}
         >
           For Nonprofits

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { Counter, Reveal, SplitText } from './primitives';
+import { Counter, Reveal, SectionMarker, SplitText } from './primitives';
 import { GAP_STAT } from '../data/site';
 
 const EASE_OUT = [0.16, 1, 0.3, 1] as const;
@@ -12,12 +12,15 @@ const Bar: React.FC<{ percent: number; tone: 'muted' | 'accent' }> = ({
   const reduced = useReducedMotion();
 
   return (
-    <div className="relative h-px w-full bg-bone/20">
+    <div className="relative h-1.5 w-full rounded-full bg-white/12">
       <motion.div
-        className={`absolute inset-y-0 left-0 origin-left ${
-          tone === 'accent' ? 'bg-tomato' : 'bg-bone/70'
-        }`}
-        style={{ width: `${percent}%` }}
+        className="absolute inset-y-0 left-0 origin-left rounded-full"
+        style={{
+          width: `${percent}%`,
+          backgroundImage:
+            tone === 'accent' ? 'var(--gradient-secondary)' : undefined,
+          backgroundColor: tone === 'accent' ? undefined : 'rgba(255,255,255,0.75)',
+        }}
         initial={reduced ? { scaleX: 1 } : { scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true, margin: '0px 0px -20% 0px' }}
@@ -37,39 +40,32 @@ const Stat: React.FC<{
   <div className="flex flex-col gap-6">
     <Reveal delay={delay}>
       <div
-        className={`flex items-start leading-none tracking-[-0.04em] ${
-          tone === 'accent' ? 'text-tomato' : 'text-bone'
+        className={`font-display flex items-baseline leading-none ${
+          tone === 'accent' ? 'text-orange' : 'text-white'
         }`}
       >
-        <span className="text-[clamp(5rem,17vw,14rem)] leading-[0.8]">
+        <span className="text-[clamp(5rem,16vw,13rem)] leading-[0.82] tracking-[-0.02em]">
           <Counter value={value} duration={1.9} />
         </span>
-        <span className="mt-[0.35em] font-mono text-[clamp(1.25rem,2.4vw,2rem)] tracking-normal">
-          %
-        </span>
+        <span className="ml-1 text-[clamp(1.5rem,3vw,2.75rem)]">%</span>
       </div>
     </Reveal>
 
     <Bar percent={value} tone={tone} />
 
     <Reveal delay={delay + 0.1} className="max-w-md">
-      <p
-        className={`subheading ${tone === 'accent' ? 'text-bone' : 'text-bone/80'}`}
-      >
+      <p className={`subheading ${tone === 'accent' ? 'text-white' : 'text-white/85'}`}>
         {label}
       </p>
-      <p className="mono-label mt-4 text-bone/45">{note}</p>
+      <p className="meta mt-4 text-white/55">{note}</p>
     </Reveal>
   </div>
 );
 
 export const Gap: React.FC = () => (
-  <section id="gap" className="relative bg-ink text-bone">
+  <section id="gap" className="surface-navy relative">
     <div className="shell section-y">
-      <Reveal className="flex items-baseline justify-between gap-6 pb-14 sm:pb-20">
-        <span className="numeral text-bone/40">01 — Where the sector is</span>
-        <span className="eyebrow text-bone/40">{GAP_STAT.eyebrow}</span>
-      </Reveal>
+      <SectionMarker index="01 — Where the sector is" label={GAP_STAT.eyebrow} invert />
 
       <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
         <Stat
@@ -87,11 +83,11 @@ export const Gap: React.FC = () => (
         />
       </div>
 
-      <div className="mt-24 border-t border-bone/15 pt-14 sm:mt-32">
+      <div className="mt-24 border-t border-white/20 pt-14 sm:mt-32">
         <SplitText
           as="h2"
           text={GAP_STAT.closing}
-          className="heading max-w-[26ch] text-bone"
+          className="heading max-w-[26ch] text-white"
           stagger={0.028}
         />
       </div>

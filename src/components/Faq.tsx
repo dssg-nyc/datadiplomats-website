@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Reveal, SplitText } from './primitives';
+import { Reveal, SectionMarker, SplitText } from './primitives';
 import { FAQS } from '../data/site';
 
 export const Faq: React.FC = () => {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="bg-bone">
+    <section id="faq" className="bg-slate-50">
       <div className="shell section-y">
-        <Reveal className="flex items-baseline justify-between gap-6 pb-14 sm:pb-20">
-          <span className="numeral">05 — Before you ask</span>
-          <span className="eyebrow">Straight answers</span>
-        </Reveal>
+        <SectionMarker index="05 — Before you ask" label="Straight answers" />
 
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <SplitText
               as="h2"
               text="The questions every ED asks us."
-              className="heading max-w-[14ch] lg:sticky lg:top-32"
+              className="heading max-w-[14ch] text-navy lg:sticky lg:top-32"
               stagger={0.045}
             />
           </div>
@@ -29,7 +26,7 @@ export const Faq: React.FC = () => {
               const isOpen = open === i;
               return (
                 <Reveal key={faq.question} delay={i * 0.05}>
-                  <div className="border-t border-cola/12 last:border-b last:border-cola/12">
+                  <div className="border-t border-slate-200 last:border-b last:border-slate-200">
                     <dt>
                       <button
                         type="button"
@@ -37,16 +34,17 @@ export const Faq: React.FC = () => {
                         aria-expanded={isOpen}
                         className="flex w-full cursor-pointer items-start justify-between gap-8 py-7 text-left"
                       >
-                        <span className="subheading max-w-[32ch] transition-colors duration-300 hover:text-tomato">
+                        <span
+                          className={`subheading max-w-[32ch] transition-colors duration-300 hover:text-orange ${
+                            isOpen ? 'text-orange' : 'text-navy'
+                          }`}
+                        >
                           {faq.question}
                         </span>
-                        <span
-                          aria-hidden
-                          className="relative mt-3 h-3 w-3 shrink-0"
-                        >
-                          <span className="absolute top-1/2 left-0 h-px w-3 bg-cola/60" />
+                        <span aria-hidden className="relative mt-3 h-3 w-3 shrink-0">
+                          <span className="absolute top-1/2 left-0 h-px w-3 bg-slate-500" />
                           <span
-                            className={`absolute top-1/2 left-0 h-px w-3 bg-cola/60 transition-transform duration-400 ${
+                            className={`absolute top-1/2 left-0 h-px w-3 bg-slate-500 transition-transform duration-300 ${
                               isOpen ? 'rotate-0' : 'rotate-90'
                             }`}
                           />
@@ -62,9 +60,7 @@ export const Faq: React.FC = () => {
                           transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
                           className="overflow-hidden"
                         >
-                          <p className="mono-label max-w-2xl pb-8 text-cola/60">
-                            {faq.answer}
-                          </p>
+                          <p className="meta max-w-2xl pb-8">{faq.answer}</p>
                         </motion.dd>
                       )}
                     </AnimatePresence>

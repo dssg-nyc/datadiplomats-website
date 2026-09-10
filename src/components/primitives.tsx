@@ -48,7 +48,7 @@ export const SplitText: React.FC<{
   className?: string;
   delay?: number;
   stagger?: number;
-  as?: 'h1' | 'h2' | 'h3' | 'p' | 'div';
+  as?: 'h1' | 'h2' | 'h3' | 'p' | 'div' | 'span';
   accent?: string;
 }> = ({
   text,
@@ -69,7 +69,7 @@ export const SplitText: React.FC<{
         {words.map((word, i) => (
           <span
             key={`${word}-${i}`}
-            className={accentStart >= 0 && i >= accentStart ? 'text-tomato' : undefined}
+            className={accentStart >= 0 && i >= accentStart ? 'text-orange' : undefined}
           >
             {word}
             {i < words.length - 1 ? ' ' : ''}
@@ -84,11 +84,11 @@ export const SplitText: React.FC<{
       {words.map((word, i) => (
         <span
           key={`${word}-${i}`}
-          className="inline-block overflow-hidden pb-[0.14em] -mb-[0.14em] align-bottom"
+          className="inline-block overflow-hidden pb-[0.16em] -mb-[0.16em] align-bottom"
         >
           <motion.span
             className={`inline-block ${
-              accentStart >= 0 && i >= accentStart ? 'text-tomato' : ''
+              accentStart >= 0 && i >= accentStart ? 'text-orange' : ''
             }`}
             initial={{ y: '110%' }}
             whileInView={{ y: '0%' }}
@@ -163,11 +163,8 @@ export const Marquee: React.FC<{
     <div className="flex shrink-0 items-center">
       {items.map((item, i) => (
         <span key={`${item}-${i}`} className="flex items-center whitespace-nowrap">
-          <span className="eyebrow !text-[0.8125rem]">{item}</span>
-          <span
-            aria-hidden
-            className="mx-6 font-mono text-[0.8125rem] text-tomato/70 sm:mx-9"
-          >
+          <span className="eyebrow">{item}</span>
+          <span aria-hidden className="mx-6 text-xs text-orange sm:mx-9">
             {separator}
           </span>
         </span>
@@ -184,20 +181,23 @@ export const Marquee: React.FC<{
         {group}
         {group}
       </div>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-bone to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-bone to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent" />
     </div>
   );
 };
 
-/** Section chrome: hairline, index numeral, eyebrow. */
-export const SectionMarker: React.FC<{ index: string; label: string }> = ({
-  index,
-  label,
-}) => (
-  <Reveal className="flex items-baseline justify-between gap-6 pb-10 sm:pb-14">
-    <span className="numeral">{index}</span>
-    <span className="eyebrow text-right">{label}</span>
+/** Section chrome: index numeral on the left, label on the right. */
+export const SectionMarker: React.FC<{
+  index: string;
+  label: string;
+  invert?: boolean;
+}> = ({ index, label, invert = false }) => (
+  <Reveal className="flex items-baseline justify-between gap-6 pb-12 sm:pb-16">
+    <span className={`numeral ${invert ? 'text-white/50' : ''}`}>{index}</span>
+    <span className={`eyebrow text-right ${invert ? 'text-white/50' : ''}`}>
+      {label}
+    </span>
   </Reveal>
 );
 
@@ -212,8 +212,8 @@ export const ScrollProgress: React.FC = () => {
 
   return (
     <motion.div
-      className="fixed inset-x-0 top-0 z-60 h-px origin-left bg-tomato"
-      style={{ scaleX }}
+      className="fixed inset-x-0 top-0 z-60 h-0.5 origin-left"
+      style={{ scaleX, backgroundImage: 'var(--gradient-secondary)' }}
       aria-hidden
     />
   );

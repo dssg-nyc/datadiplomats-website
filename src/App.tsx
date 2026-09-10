@@ -16,7 +16,7 @@ export default function App() {
     document.getElementById('join')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   return (
-    <div className="flex min-h-screen flex-col bg-bone text-cola">
+    <div className="flex min-h-screen flex-col bg-white text-slate-900">
       <ScrollProgress />
       <Nav />
 

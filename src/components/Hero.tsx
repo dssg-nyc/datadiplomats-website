@@ -21,17 +21,17 @@ export const Hero: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[88svh] flex-col justify-end overflow-hidden pt-24"
+      className="relative flex min-h-[84svh] flex-col justify-end overflow-hidden bg-white pt-24"
     >
       <motion.div
         aria-hidden
         style={reduced ? undefined : { y: blobY }}
-        className="pointer-events-none absolute -right-32 -top-24 h-[42rem] w-[42rem] rounded-full bg-tea/70 blur-[90px]"
+        className="pointer-events-none absolute -right-40 -top-32 h-[44rem] w-[44rem] rounded-full bg-blue/8 blur-[110px]"
       />
       <motion.div
         aria-hidden
         style={reduced ? undefined : { y: blobY }}
-        className="pointer-events-none absolute -left-40 top-1/3 h-[30rem] w-[30rem] rounded-full bg-lilac/60 blur-[100px]"
+        className="pointer-events-none absolute -left-40 top-1/3 h-[32rem] w-[32rem] rounded-full bg-orange/10 blur-[110px]"
       />
 
       <motion.div
@@ -46,17 +46,17 @@ export const Hero: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
           className="flex flex-col justify-between gap-6 sm:flex-row sm:items-start"
         >
           <span className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-tomato" />
+            <span className="h-1.5 w-1.5 rounded-full bg-orange" />
             <span className="eyebrow">501(c)(3) · New York City</span>
           </span>
           <span className="eyebrow leading-relaxed sm:text-right">
             Membership open for the 2026 cohort
             <br />
-            <span className="text-tomato">90% use AI. 10% see the value.</span>
+            <span className="text-orange">90% use AI. 10% see the value.</span>
           </span>
         </motion.div>
 
-        <h1 className="display mt-auto max-w-[22ch] pt-16">
+        <h1 className="display mt-auto max-w-[20ch] pt-16 text-navy">
           <SplitText
             as="span"
             text="The AI membership"
@@ -67,13 +67,13 @@ export const Hero: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
           <SplitText
             as="span"
             text="for nonprofits."
-            className="block text-cola/45"
+            className="block italic text-orange"
             delay={0.26}
             stagger={0.055}
           />
         </h1>
 
-        <div className="mt-12 grid gap-10 border-t border-cola/12 pt-10 lg:grid-cols-12">
+        <div className="mt-12 grid gap-10 border-t border-slate-200 pt-10 lg:grid-cols-12">
           <motion.p
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ export const Hero: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
             className="flex flex-col items-start gap-4 lg:col-span-5 lg:col-start-8 lg:items-end"
           >
             <div className="flex flex-wrap gap-2.5">
-              <button type="button" onClick={onJoin} className="btn btn-solid">
+              <button type="button" onClick={onJoin} className="btn btn-orange">
                 Join the membership
               </button>
               <a
@@ -102,14 +102,14 @@ export const Hero: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
                 )}&body=${encodeURIComponent(
                   'Organization:\nWhat is eating our staff time:\nBest times to talk:\n',
                 )}`}
-                className="btn btn-ghost"
+                className="btn btn-outline"
               >
                 Book a call
               </a>
             </div>
             <span className="eyebrow">
               Or write to{' '}
-              <a href={`mailto:${CONTACT_EMAIL}`} className="link-draw text-tomato">
+              <a href={`mailto:${CONTACT_EMAIL}`} className="link-draw text-orange">
                 {CONTACT_EMAIL}
               </a>
             </span>
@@ -121,7 +121,7 @@ export const Hero: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.9 }}
-        className="relative border-y border-cola/12 py-4"
+        className="relative border-y border-slate-200 bg-white py-4"
       >
         <Marquee items={SECTORS} duration={54} />
       </motion.div>

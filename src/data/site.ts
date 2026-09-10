@@ -146,7 +146,7 @@ export const BENEFITS: Benefit[] = [
       'Member pricing on every cohort, plus seats for volunteers and interns',
       'Completion certificates your staff can put in front of a funder or a hiring manager',
     ],
-    surface: 'var(--color-tea)',
+    surface: 'rgba(0, 45, 114, 0.05)',
   },
   {
     index: '02',
@@ -160,7 +160,7 @@ export const BENEFITS: Benefit[] = [
       'Standing office hours for the questions too small to justify a contract',
       'Hands-on project support that ships, then hands over documentation',
     ],
-    surface: 'var(--color-pale)',
+    surface: 'rgba(0, 86, 179, 0.07)',
   },
   {
     index: '03',
@@ -174,7 +174,7 @@ export const BENEFITS: Benefit[] = [
       'Dedicated analytics support that knows what a logic model is',
       'Reporting you can reuse across every funder instead of rebuilding each cycle',
     ],
-    surface: 'var(--color-lilac)',
+    surface: 'rgba(244, 126, 45, 0.09)',
   },
   {
     index: '04',
@@ -188,7 +188,7 @@ export const BENEFITS: Benefit[] = [
       'Everyday operations help: intake, meeting notes, program documentation',
       'Privacy-first by default — client data is not training data, ever',
     ],
-    surface: 'color-mix(in srgb, var(--color-slate-blue) 22%, var(--color-bone))',
+    surface: 'rgba(0, 45, 114, 0.11)',
   },
 ];
 

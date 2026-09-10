@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { Reveal, SplitText } from './primitives';
+import { Reveal, SectionMarker, SplitText } from './primitives';
 import { BENEFITS, CONTACT_EMAIL } from '../data/site';
 
 const EASE_OUT = [0.16, 1, 0.3, 1] as const;
@@ -10,12 +10,9 @@ export const Membership: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
   const reduced = useReducedMotion();
 
   return (
-    <section id="membership" className="relative bg-bone">
+    <section id="membership" className="relative bg-white">
       <div className="shell section-y">
-        <Reveal className="flex items-baseline justify-between gap-6 pb-14 sm:pb-20">
-          <span className="numeral">03 — What membership gives you</span>
-          <span className="eyebrow">Four pillars</span>
-        </Reveal>
+        <SectionMarker index="03 — What membership gives you" label="Four pillars" />
 
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           {/* Sticky index: tracks whichever pillar is on screen. */}
@@ -24,7 +21,7 @@ export const Membership: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
               <SplitText
                 as="h2"
                 text="Training, people, data, tools."
-                className="heading max-w-[12ch]"
+                className="heading max-w-[12ch] text-navy"
                 stagger={0.05}
               />
               <Reveal delay={0.18}>
@@ -38,17 +35,17 @@ export const Membership: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
                 {BENEFITS.map((benefit, i) => (
                   <div
                     key={benefit.index}
-                    className="flex items-center gap-4 border-t border-cola/12 py-4 last:border-b last:border-cola/12"
+                    className="flex items-center gap-4 border-t border-slate-200 py-4 last:border-b last:border-slate-200"
                   >
                     <span
                       className={`h-1.5 w-1.5 shrink-0 rounded-full transition-colors duration-500 ${
-                        active === i ? 'bg-tomato' : 'bg-cola/20'
+                        active === i ? 'bg-orange' : 'bg-slate-300'
                       }`}
                     />
                     <span className="numeral">{benefit.index}</span>
                     <span
-                      className={`mono-label transition-colors duration-500 ${
-                        active === i ? 'text-cola' : 'text-cola/40'
+                      className={`text-sm transition-colors duration-500 ${
+                        active === i ? 'font-semibold text-navy' : 'text-slate-400'
                       }`}
                     >
                       {benefit.title}
@@ -58,7 +55,7 @@ export const Membership: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
               </nav>
 
               <Reveal delay={0.24}>
-                <button type="button" onClick={onJoin} className="btn btn-solid mt-10">
+                <button type="button" onClick={onJoin} className="btn btn-orange mt-10">
                   Join the membership
                 </button>
               </Reveal>
@@ -75,20 +72,18 @@ export const Membership: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
                 viewport={{ once: true, margin: '0px 0px -14% 0px' }}
                 transition={{ duration: 0.85, ease: EASE_OUT }}
                 style={{ backgroundColor: benefit.surface }}
-                className="rounded-lg p-7 sm:p-10 lg:p-12"
+                className="rounded-[var(--radius-xl)] p-7 shadow-brand-sm sm:p-10 lg:p-12"
               >
                 <div className="flex items-baseline justify-between gap-6">
-                  <span className="numeral text-cola/50">{benefit.index}</span>
-                  <span className="eyebrow text-right text-cola/55">
-                    {benefit.kicker}
-                  </span>
+                  <span className="numeral text-slate-500">{benefit.index}</span>
+                  <span className="eyebrow text-right">{benefit.kicker}</span>
                 </div>
 
-                <h3 className="mt-8 text-[clamp(1.75rem,3.4vw,3rem)] leading-[0.98] tracking-[-0.03em]">
+                <h3 className="mt-8 font-display text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.06] text-navy">
                   {benefit.title}
                 </h3>
 
-                <p className="lede mt-5 max-w-2xl text-cola/75">{benefit.summary}</p>
+                <p className="lede mt-5 max-w-2xl">{benefit.summary}</p>
 
                 <ul className="mt-9">
                   {benefit.points.map((point, j) => (
@@ -102,13 +97,15 @@ export const Membership: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
                         delay: 0.08 * j,
                         ease: EASE_OUT,
                       }}
-                      className="flex items-start gap-4 border-t border-cola/15 py-4 last:border-b last:border-cola/15"
+                      className="flex items-start gap-4 border-t border-slate-900/10 py-4 last:border-b last:border-slate-900/10"
                     >
                       <span
                         aria-hidden
-                        className="mt-[0.55em] h-px w-4 shrink-0 bg-tomato"
+                        className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-orange"
                       />
-                      <span className="mono-label text-cola/80">{point}</span>
+                      <span className="text-[0.9375rem] leading-relaxed text-slate-700">
+                        {point}
+                      </span>
                     </motion.li>
                   ))}
                 </ul>
@@ -116,13 +113,13 @@ export const Membership: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
             ))}
 
             <Reveal className="mt-4">
-              <p className="mono-label text-cola/55">
+              <p className="meta">
                 Not sure which pillar you need first? Say so in an email to{' '}
                 <a
                   href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
                     'Which pillar should we start with?',
                   )}`}
-                  className="link-draw text-tomato"
+                  className="link-draw font-medium text-orange"
                 >
                   {CONTACT_EMAIL}
                 </a>{' '}

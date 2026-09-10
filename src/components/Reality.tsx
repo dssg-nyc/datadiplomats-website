@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { Reveal, SplitText } from './primitives';
+import { Reveal, SectionMarker, SplitText } from './primitives';
 import { PAIN_POINTS } from '../data/site';
 
 const EASE_OUT = [0.16, 1, 0.3, 1] as const;
@@ -9,12 +9,9 @@ export const Reality: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
   const reduced = useReducedMotion();
 
   return (
-    <section id="reality" className="relative bg-bone">
+    <section id="reality" className="relative bg-white">
       <div className="shell section-y">
-        <Reveal className="flex items-baseline justify-between gap-6 pb-14 sm:pb-20">
-          <span className="numeral">02 — The week you actually have</span>
-          <span className="eyebrow">Sound familiar</span>
-        </Reveal>
+        <SectionMarker index="02 — The week you actually have" label="Sound familiar" />
 
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
@@ -22,7 +19,7 @@ export const Reality: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
               <SplitText
                 as="h2"
                 text="None of this is a technology problem yet."
-                className="heading max-w-[16ch]"
+                className="heading max-w-[16ch] text-navy"
                 stagger={0.04}
               />
               <Reveal delay={0.2}>
@@ -34,7 +31,7 @@ export const Reality: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
                 <button
                   type="button"
                   onClick={onJoin}
-                  className="btn btn-ghost mt-10"
+                  className="btn btn-outline mt-10"
                 >
                   See what membership covers
                 </button>
@@ -43,24 +40,22 @@ export const Reality: React.FC<{ onJoin: () => void }> = ({ onJoin }) => {
           </div>
 
           <ul className="lg:col-span-7">
-            {PAIN_POINTS.map((point, i) => (
+            {PAIN_POINTS.map((point) => (
               <motion.li
                 key={point.index}
-                initial={reduced ? { opacity: 0 } : { opacity: 0, y: 26 }}
+                initial={reduced ? { opacity: 0 } : { opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '0px 0px -12% 0px' }}
                 transition={{ duration: 0.7, ease: EASE_OUT }}
-                className="group border-t border-cola/12 py-7 last:border-b last:border-cola/12"
+                className="group border-t border-slate-200 py-7 last:border-b last:border-slate-200"
               >
                 <div className="flex gap-5 sm:gap-8">
-                  <span className="numeral mt-1.5 shrink-0">{point.index}</span>
+                  <span className="numeral mt-2 shrink-0">{point.index}</span>
                   <div>
-                    <p className="subheading text-cola transition-colors duration-300 group-hover:text-tomato">
+                    <p className="subheading text-navy transition-colors duration-300 group-hover:text-orange">
                       “{point.quote}”
                     </p>
-                    <p className="mono-label mt-3.5 max-w-xl text-cola/55">
-                      {point.detail}
-                    </p>
+                    <p className="meta mt-3 max-w-xl">{point.detail}</p>
                   </div>
                 </div>
               </motion.li>

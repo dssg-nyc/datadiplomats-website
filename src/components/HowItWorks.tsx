@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
-import { Reveal, SplitText } from './primitives';
+import { Reveal, SectionMarker, SplitText } from './primitives';
 import { HOW_IT_WORKS, PRINCIPLES } from '../data/site';
 
 const EASE_OUT = [0.16, 1, 0.3, 1] as const;
@@ -16,25 +16,29 @@ export const HowItWorks: React.FC = () => {
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="how" className="bg-bone">
+    <section id="how" className="bg-white">
       <div className="shell section-y">
-        <Reveal className="flex items-baseline justify-between gap-6 pb-14 sm:pb-20">
-          <span className="numeral">04 — Getting started</span>
-          <span className="eyebrow">Three steps, no discovery invoice</span>
-        </Reveal>
+        <SectionMarker
+          index="04 — Getting started"
+          label="Three steps, no discovery invoice"
+        />
 
         <SplitText
           as="h2"
           text="From a first email to a working capability."
-          className="heading max-w-[20ch]"
+          className="heading max-w-[20ch] text-navy"
           stagger={0.035}
         />
 
         <div ref={ref} className="mt-16 sm:mt-24">
-          <div className="relative h-px w-full bg-cola/12">
+          <div className="relative h-1 w-full rounded-full bg-slate-100">
             <motion.div
-              className="absolute inset-y-0 left-0 w-full origin-left bg-tomato"
-              style={reduced ? { scaleX: 1 } : { scaleX }}
+              className="absolute inset-y-0 left-0 w-full origin-left rounded-full"
+              style={
+                reduced
+                  ? { scaleX: 1, backgroundImage: 'var(--gradient-secondary)' }
+                  : { scaleX, backgroundImage: 'var(--gradient-secondary)' }
+              }
               aria-hidden
             />
           </div>
@@ -50,24 +54,26 @@ export const HowItWorks: React.FC = () => {
                 className="sm:pr-6"
               >
                 <span className="numeral">{step.index}</span>
-                <h3 className="mt-6 text-[clamp(1.375rem,2.1vw,1.875rem)] leading-[1.05] tracking-[-0.025em]">
+                <h3 className="mt-6 font-display text-[clamp(1.375rem,2vw,1.75rem)] leading-[1.12] text-navy">
                   {step.title}
                 </h3>
-                <p className="mono-label mt-4 text-cola/60">{step.body}</p>
+                <p className="meta mt-4">{step.body}</p>
               </motion.li>
             ))}
           </ol>
         </div>
 
-        <div className="mt-24 border-t border-cola/12 pt-14 sm:mt-32">
+        <div className="mt-24 border-t border-slate-200 pt-14 sm:mt-32">
           <Reveal>
             <span className="eyebrow">The standing commitments</span>
           </Reveal>
           <div className="mt-10 grid gap-10 sm:grid-cols-3 sm:gap-8">
             {PRINCIPLES.map((principle, i) => (
               <Reveal key={principle.title} delay={i * 0.1} className="sm:pr-6">
-                <h3 className="subheading max-w-[18ch]">{principle.title}</h3>
-                <p className="mono-label mt-4 text-cola/60">{principle.body}</p>
+                <h3 className="subheading max-w-[18ch] text-navy">
+                  {principle.title}
+                </h3>
+                <p className="meta mt-4">{principle.body}</p>
               </Reveal>
             ))}
           </div>

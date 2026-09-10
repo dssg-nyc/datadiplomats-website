@@ -24,18 +24,18 @@ const COLUMNS = [
 ];
 
 export const Footer: React.FC = () => (
-  <footer className="relative overflow-hidden border-t border-bone/12 bg-ink text-bone">
+  <footer className="relative overflow-hidden bg-slate-900 text-white">
     <div className="shell py-16 sm:py-20">
       <div className="grid gap-12 lg:grid-cols-12">
         <Reveal className="lg:col-span-5">
           <Logo invert size={34} />
-          <p className="mono-label mt-6 max-w-xs text-bone/55">
+          <p className="meta mt-6 max-w-xs text-white/60">
             {ORG.legal} — a 501(c)(3) putting frontier AI to work inside the
             organizations that hold {ORG.city} together.
           </p>
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="link-draw mt-6 inline-block font-mono text-[0.8125rem] text-tomato"
+            className="link-draw mt-6 inline-block text-sm font-medium text-orange"
           >
             {CONTACT_EMAIL}
           </a>
@@ -44,7 +44,7 @@ export const Footer: React.FC = () => (
         {COLUMNS.map((column, i) => (
           <Reveal key={column.heading} delay={0.08 * (i + 1)} className="lg:col-span-2">
             <nav>
-              <span className="eyebrow text-bone/40">{column.heading}</span>
+              <span className="eyebrow text-white/50">{column.heading}</span>
               <ul className="mt-5 flex flex-col gap-3">
                 {column.links.map((link) => (
                   <li key={link.id}>
@@ -55,7 +55,7 @@ export const Footer: React.FC = () => (
                           .getElementById(link.id)
                           ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
                       }
-                      className="mono-label link-draw cursor-pointer text-bone/70 transition-colors hover:text-bone"
+                      className="link-draw cursor-pointer text-sm text-white/75 transition-colors hover:text-white"
                     >
                       {link.label}
                     </button>
@@ -67,8 +67,8 @@ export const Footer: React.FC = () => (
         ))}
 
         <Reveal delay={0.24} className="lg:col-span-3">
-          <span className="eyebrow text-bone/40">Say hello</span>
-          <p className="mono-label mt-5 text-bone/60">
+          <span className="eyebrow text-white/50">Say hello</span>
+          <p className="meta mt-5 text-white/65">
             Email us with your organization, your role, and the work that eats your
             week. You get a reply from a person.
           </p>
@@ -76,18 +76,18 @@ export const Footer: React.FC = () => (
             href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
               'Booking a call — nonprofit AI membership',
             )}`}
-            className="btn btn-ghost-invert mt-6"
+            className="btn btn-outline-invert mt-6"
           >
             Book a call
           </a>
         </Reveal>
       </div>
 
-      <div className="mt-16 flex flex-col gap-4 border-t border-bone/12 pt-8 sm:flex-row sm:items-center sm:justify-between">
-        <span className="eyebrow text-bone/35">
+      <div className="mt-16 flex flex-col gap-4 border-t border-white/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <span className="eyebrow text-white/40">
           © {new Date().getFullYear()} {ORG.legal}. All rights reserved.
         </span>
-        <span className="eyebrow text-bone/35">{ORG.tagline}</span>
+        <span className="eyebrow text-white/40">{ORG.tagline}</span>
       </div>
     </div>
 
@@ -99,7 +99,7 @@ export const Footer: React.FC = () => (
         whileInView={{ y: '-8%', opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-        className="block w-full select-none whitespace-nowrap text-center text-[13.2vw] leading-none tracking-[-0.045em] text-bone/12"
+        className="block w-full select-none whitespace-nowrap text-center font-display text-[13vw] leading-none tracking-[-0.02em] text-white/10"
       >
         Data Diplomats
       </motion.span>

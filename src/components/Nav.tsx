@@ -39,7 +39,7 @@ export const Nav: React.FC = () => {
         <div
           className={`transition-all duration-500 ${
             condensed
-              ? 'border-b border-cola/10 bg-bone/85 backdrop-blur-xl'
+              ? 'border-b border-slate-200 bg-white/90 shadow-brand-sm backdrop-blur-xl'
               : 'border-b border-transparent'
           }`}
         >
@@ -59,7 +59,7 @@ export const Nav: React.FC = () => {
                   key={link.id}
                   type="button"
                   onClick={() => scrollTo(link.id)}
-                  className="eyebrow link-draw cursor-pointer transition-colors hover:text-cola"
+                  className="eyebrow link-draw cursor-pointer transition-colors hover:text-navy"
                 >
                   {link.label}
                 </button>
@@ -71,32 +71,32 @@ export const Nav: React.FC = () => {
                 href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
                   'Booking a call — nonprofit AI membership',
                 )}`}
-                className="btn btn-ghost hidden sm:inline-flex"
+                className="btn btn-outline hidden sm:inline-flex"
               >
                 Book a call
               </a>
               <button
                 type="button"
                 onClick={() => scrollTo('join')}
-                className="btn btn-solid"
+                className="btn btn-orange"
               >
                 Join
               </button>
               <button
                 type="button"
                 onClick={() => setMenuOpen((open) => !open)}
-                className="ml-1 flex h-9 w-9 cursor-pointer items-center justify-center rounded-[0.625rem] border border-cola/12 lg:hidden"
+                className="ml-1 flex h-9 w-9 cursor-pointer items-center justify-center rounded-[var(--radius-md)] border border-slate-200 lg:hidden"
                 aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={menuOpen}
               >
                 <span className="flex flex-col gap-[5px]">
                   <span
-                    className={`block h-px w-4 bg-cola transition-transform duration-300 ${
+                    className={`block h-px w-4 bg-navy transition-transform duration-300 ${
                       menuOpen ? 'translate-y-[3px] rotate-45' : ''
                     }`}
                   />
                   <span
-                    className={`block h-px w-4 bg-cola transition-transform duration-300 ${
+                    className={`block h-px w-4 bg-navy transition-transform duration-300 ${
                       menuOpen ? '-translate-y-[3px] -rotate-45' : ''
                     }`}
                   />
@@ -114,7 +114,7 @@ export const Nav: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-0 top-[68px] z-40 border-b border-cola/10 bg-bone/95 backdrop-blur-xl lg:hidden"
+            className="fixed inset-x-0 top-[70px] z-40 border-b border-slate-200 bg-white/97 shadow-brand-md backdrop-blur-xl lg:hidden"
           >
             <nav className="shell flex flex-col py-4">
               {LINKS.map((link) => (
@@ -125,7 +125,7 @@ export const Nav: React.FC = () => {
                     setMenuOpen(false);
                     scrollTo(link.id);
                   }}
-                  className="cursor-pointer border-b border-cola/8 py-4 text-left subheading last:border-b-0"
+                  className="subheading cursor-pointer border-b border-slate-100 py-4 text-left last:border-b-0"
                 >
                   {link.label}
                 </button>
@@ -134,7 +134,7 @@ export const Nav: React.FC = () => {
                 href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
                   'Booking a call — nonprofit AI membership',
                 )}`}
-                className="btn btn-ghost mt-5"
+                className="btn btn-outline mt-5"
               >
                 Book a call · {CONTACT_EMAIL}
               </a>
