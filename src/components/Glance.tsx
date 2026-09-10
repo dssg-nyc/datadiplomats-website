@@ -21,7 +21,7 @@ export const Glance: React.FC = () => (
                 value={stat.value}
                 prefix={stat.prefix}
                 suffix={stat.suffix}
-                duration={1.4}
+                duration={1.8}
               />
             </dd>
             <dt className="mt-5 max-w-[22ch]">

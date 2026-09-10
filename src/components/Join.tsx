@@ -39,42 +39,47 @@ export const Join: React.FC = () => {
     note: '',
   });
   const [submitted, setSubmitted] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<'address' | 'message' | null>(null);
 
   const update = (key: keyof typeof form) => (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) => setForm((prev) => ({ ...prev, [key]: event.target.value }));
 
-  // The site is static, so the sign-up hands off to a pre-filled email to us.
+  const subject = `Membership interest — ${form.organization || form.name}`;
+
+  const message = [
+    `Name: ${form.name}`,
+    `Email: ${form.email}`,
+    `Organization: ${form.organization}`,
+    `Role: ${form.role || '—'}`,
+    `Where we need help first: ${form.focus}`,
+    `Annual operating budget: ${form.budget}`,
+    '',
+    'Notes:',
+    form.note || '—',
+  ].join('\n');
+
+  // The site is static, so sign-up hands off to email. Rather than firing a
+  // mailto the instant someone submits, confirm first and let them choose
+  // between their mail app and copying the details.
+  const signupHref = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+    subject,
+  )}&body=${encodeURIComponent(message)}`;
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
-    const body = [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      `Organization: ${form.organization}`,
-      `Role: ${form.role || '—'}`,
-      `Where we need help first: ${form.focus}`,
-      `Annual operating budget: ${form.budget}`,
-      '',
-      'Notes:',
-      form.note || '—',
-    ].join('\n');
-
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      `Membership interest — ${form.organization || form.name}`,
-    )}&body=${encodeURIComponent(body)}`;
-
     setSubmitted(true);
   };
 
-  const copyEmail = async () => {
+  const copy = async (kind: 'address' | 'message') => {
     try {
-      await navigator.clipboard.writeText(CONTACT_EMAIL);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2200);
+      await navigator.clipboard.writeText(
+        kind === 'address' ? CONTACT_EMAIL : `To: ${CONTACT_EMAIL}\nSubject: ${subject}\n\n${message}`,
+      );
+      setCopied(kind);
+      window.setTimeout(() => setCopied(null), 2400);
     } catch {
-      setCopied(false);
+      setCopied(null);
     }
   };
 
@@ -124,8 +129,12 @@ export const Join: React.FC = () => {
                 <a href={bookingHref} className="btn btn-ghost-invert">
                   Book a 30-minute call
                 </a>
-                <button type="button" onClick={copyEmail} className="btn btn-ghost-invert">
-                  {copied ? 'Copied' : 'Copy address'}
+                <button
+                  type="button"
+                  onClick={() => copy('address')}
+                  className="btn btn-ghost-invert"
+                >
+                  {copied === 'address' ? 'Copied' : 'Copy address'}
                 </button>
               </div>
             </Reveal>
@@ -142,26 +151,32 @@ export const Join: React.FC = () => {
                   transition={{ duration: 0.7, ease: EASE_OUT }}
                   className="rounded-lg border border-bone/15 p-8 sm:p-12"
                 >
-                  <span className="eyebrow text-tomato">Almost there</span>
+                  <span className="eyebrow text-tomato">One step left</span>
                   <h3 className="mt-6 text-[clamp(1.5rem,2.8vw,2.25rem)] leading-[1.05] tracking-[-0.025em]">
-                    Your draft email is open.
+                    Thanks, {form.name.split(' ')[0] || 'friend'}. Your note is ready
+                    to send.
                   </h3>
                   <p className="mono-label mt-5 max-w-lg text-bone/60">
-                    Hit send and it lands with us at {CONTACT_EMAIL}. If your browser
-                    did not open a mail window, copy the address below and send us the
-                    same details — organization, role, and what is eating your staff
-                    time.
+                    We keep the sign-up as plain email so nothing about{' '}
+                    {form.organization || 'your organization'} sits in a third-party
+                    form. Open it in your mail app, or copy the message and send it
+                    from wherever you read email.
                   </p>
+
+                  <pre className="mt-7 max-h-52 overflow-auto whitespace-pre-wrap rounded-lg bg-bone/6 p-5 font-mono text-[0.6875rem] leading-relaxed text-bone/55">
+                    {`To: ${CONTACT_EMAIL}\nSubject: ${subject}\n\n${message}`}
+                  </pre>
+
                   <div className="mt-8 flex flex-wrap gap-2.5">
-                    <a href={bookingHref} className="btn btn-bone">
-                      Open mail again
+                    <a href={signupHref} className="btn btn-bone">
+                      Open in my email app
                     </a>
                     <button
                       type="button"
-                      onClick={copyEmail}
+                      onClick={() => copy('message')}
                       className="btn btn-ghost-invert"
                     >
-                      {copied ? 'Copied' : `Copy ${CONTACT_EMAIL}`}
+                      {copied === 'message' ? 'Copied' : 'Copy the message'}
                     </button>
                     <button
                       type="button"
@@ -277,7 +292,8 @@ export const Join: React.FC = () => {
                       Send my details
                     </button>
                     <p className="eyebrow mt-5 text-bone/40">
-                      No newsletter blast, no sales sequence. One reply from a human.
+                      Goes straight to {CONTACT_EMAIL}. No newsletter blast, no sales
+                      sequence — one reply from a human.
                     </p>
                   </div>
                 </motion.form>

@@ -117,12 +117,16 @@ export const Counter: React.FC<{
   className?: string;
 }> = ({ value, suffix = '', prefix = '', duration = 1.6, className = '' }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: '0px 0px -20% 0px' });
+  // Wait until the numeral is properly on screen, otherwise the count finishes
+  // while it is still sliding up from the fold and reads as a static number.
+  const inView = useInView(ref, { once: true, amount: 0.9 });
   const reduced = useReducedMotion();
-  const [display, setDisplay] = useState(reduced ? value : 0);
+  // Counting from zero to a single digit is noise, not motion.
+  const animatable = value >= 10;
+  const [display, setDisplay] = useState(reduced || !animatable ? value : 0);
 
   useEffect(() => {
-    if (!inView || reduced) return;
+    if (!inView || reduced || !animatable) return;
 
     let frame = 0;
     const start = performance.now();
@@ -137,7 +141,7 @@ export const Counter: React.FC<{
 
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [inView, reduced, value, duration]);
+  }, [inView, reduced, animatable, value, duration]);
 
   return (
     <span ref={ref} className={className}>
