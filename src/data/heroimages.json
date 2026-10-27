@@ -1,0 +1,39 @@
+[
+  {
+    "name": "home",
+    "src": "images/social/nyc-hero.jpeg",
+    "shade": "dark",
+    "adjustment": "-20%",
+    "alt": "Photograph of NYC"
+  },
+  {
+    "name": "projects",
+    "src": "images/nyc_landing.jpg",
+    "shade": "light",
+    "alt": "Violet flowers against a black backdrop"
+  },
+  {
+    "name": "project-feature",
+    "src": "",
+    "shade": "dark",
+    "alt": ""
+  },
+  {
+    "name": "writing",
+    "src": "images/hackathon_image.jpg",
+    "shade": "dark",
+    "alt": "Cityscape seen from above through a purple haze"
+  },
+  {
+    "name": "open-source",
+    "src": "",
+    "shade": "white",
+    "alt": ""
+  },
+  {
+    "name": "book",
+    "src": "",
+    "shade": "white",
+    "alt": "Light gray putty applied to a wall with artful wavy strokes"
+  }
+]

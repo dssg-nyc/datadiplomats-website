@@ -1,0 +1,141 @@
+{
+  "missionTitle": "About NYC DSSG",
+  "missionLead": "First and foremost, we are community organizers — with a mission to foster a culture of passionate civic technologists dedicated to creating positive social impact through pro bono consulting and volunteer work.",
+  "missionParagraphs": [
+    "We build cohorts of civic technologists and ethical AI leaders who understand local issues and use technology to provide real solutions in our city — healthy food access, affordable housing, education equity, transportation safety, environmental justice, and public health.",
+    "Founded by the Data Diplomats for Nonprofits (NYC), our volunteer group has grown into a vibrant community of professionals committed to using technology for meaningful social impact."
+  ],
+  "values": [
+    {
+      "icon": "🎯",
+      "title": "Mission-Driven",
+      "description": "Every project we undertake directly supports organizations making a difference in our communities."
+    },
+    {
+      "icon": "🤝",
+      "title": "Collaborative",
+      "description": "We believe the best solutions come from diverse perspectives working together toward common goals."
+    },
+    {
+      "icon": "⚡",
+      "title": "Impact-Focused",
+      "description": "We measure success not just in code deployed, but in lives improved and communities strengthened."
+    },
+    {
+      "icon": "🌱",
+      "title": "Growth-Oriented",
+      "description": "We're committed to continuous learning and helping both volunteers and partners grow their capabilities."
+    }
+  ],
+  "philosophy": {
+    "eyebrow": "Our Philosophy",
+    "title": "Organizing Before Coding",
+    "intro": "Before we write a line of code, we organize. Our approach is grounded in the community-organizing tradition of Dr. Marshall Ganz — a Harvard lecturer and veteran organizer of the United Farm Workers and the 2008 Obama campaign — who teaches that lasting social change is built through relationships, not transactions.",
+    "frameworkName": "The Bicycle Framework",
+    "frameworkDescription": "Ganz likens organizing to riding a bicycle: two wheels turning in sync around a shared center of gravity. We use it to structure every cohort and every nonprofit partnership.",
+    "pillars": [
+      {
+        "name": "Narrative",
+        "wheel": "Front wheel",
+        "description": "Public narrative — telling a Story of Self, a Story of Us, and a Story of Now — turns individual values into shared motivation and a clear call to act."
+      },
+      {
+        "name": "Relationship",
+        "wheel": "Hub",
+        "description": "Grassroots, one-on-one relationship building is the hub holding everything together — the trust that lets diplomats and nonprofit partners commit to hard work together."
+      },
+      {
+        "name": "Strategy",
+        "wheel": "Back wheel",
+        "description": "Strategy turns resources — volunteer time, technical skill, and data — into the power needed to reach a concrete goal for each nonprofit partner."
+      }
+    ],
+    "theoryOfChangeTitle": "Our Theory of Change",
+    "theoryOfChangeDescription": "We treat two problems as one: nonprofits priced out of technical talent, and skilled professionals — often immigrants, career-changers, and job-seekers — priced out of career-building work. Matching trained volunteers with under-resourced nonprofits for pro bono IT, AI, and data consulting builds career-ready professionals on one side and more resilient, tech-enabled nonprofits on the other."
+  },
+  "sectionTitle": "Our Data Diplomats",
+  "entityNote": "Data Diplomats for Nonprofits is a registered 501(c)(3) charity that organizes NYC-DSSG volunteers to deliver pro bono AI strategy and governance for nonprofits. We also have internal Impact Unit that provides AI workshops, training, and consulting for implementing ethical human-centered AI to mission-driven nonprofit organizations.",
+  "applyUrl": "https://forms.gle/nKTURDV5PWRRv3Gb9",
+  "cohorts": [
+    {
+      "id": "cohort-1",
+      "name": "Cohort 1",
+      "term": "Winter 2025",
+      "description": "Our founding cohort of Data Diplomats who launched DSSG NYC and established its mission of civic tech for social good.",
+      "members": [
+        {
+          "name": "Jian",
+          "image": "/images/jianhead.png",
+          "role": "Data Science Manager - Volunteer",
+          "bio": "A passionate advocate for data science driving social change, with research in Computational Social Sciences at the Max-Planck Institute. Interested in open-source intelligence and AI agentic systems. Brings community organizing training and years in big data to social good and civic tech.",
+          "linkedin": "",
+          "motivation": "Trained as a community organizer before he was a data scientist. He studies how information moves through crowds — and wants that power in the hands of the people it is usually used on.",
+          "tint": "blue",
+          "photoZoom": 1.32
+        },
+        {
+          "name": "Ursula",
+          "image": "/images/ursula_pic.png",
+          "role": "Nonprofit Lead",
+          "bio": "Ursula is a Brooklyn-based data scientist leading DSSG NYC's nonprofit engagement, researching voter engagement, economic development, and public infrastructure. She began as a lawyer in open data policy, then spent three years on civic projects in Tbilisi, Georgia.",
+          "linkedin": "",
+          "motivation": "She started as a lawyer in open-data policy, then spent three years on civic projects in Tbilisi. She keeps returning to one question: who actually gets counted when a city decides something?",
+          "tint": "orange"
+        },
+        {
+          "name": "Carina",
+          "image": "/images/carina_pic.png",
+          "role": "Data Professional",
+          "bio": "Carina is a data professional with a Master's in Data Science and a dual Bachelor's in Quantitative Economics and Fine Arts from Tufts University. She volunteers with nonprofits in the data and civic tech space, drawn to the intersections between data, art, and community.",
+          "linkedin": "",
+          "motivation": "She studied quantitative economics and fine art in the same breath. She came to find out what data looks like when it is made with a community instead of about one.",
+          "tint": "green"
+        }
+      ]
+    },
+    {
+      "id": "cohort-2",
+      "name": "Cohort 2",
+      "term": "Spring 2026",
+      "description": "Our second cohort of Data Diplomats — engineers, researchers, and strategists who stepped up to lead nonprofit partners through data science, AI, and civic tech projects.",
+      "members": [
+        {
+          "name": "Aarya",
+          "image": "/images/aarya_headshot.png",
+          "role": "AI/ML Engineer",
+          "bio": "AI systems & compliance automation, trading terminals, national-scale ed-tech verification platforms (Mexico), IEEE SCET chair — 30+ initiatives, technical talent development, nonprofit data challenges.",
+          "linkedin": "",
+          "motivation": "He has built verification systems used at national scale. He came because the engineering that runs a country's ed-tech could run a food pantry's intake — and nobody is building that.",
+          "tint": "blue"
+        },
+        {
+          "name": "Mia",
+          "image": "/images/mia_headshot.png",
+          "role": "Research & Data Strategy Lead",
+          "bio": "PhD Social Psychology, mission-driven org research, Senior Research Director at NewWorld — nonprofit & philanthropy campaign studies, merger-era team leadership, adjunct professor of graduate statistics, data-to-strategy translation.",
+          "linkedin": "",
+          "motivation": "A social psychologist who spent years measuring what movements actually change. She joined to put that rigor where it is almost never funded: inside small mission-driven orgs.",
+          "tint": "orange"
+        },
+        {
+          "name": "Franklin",
+          "image": "/images/franklin_headshot.png",
+          "role": "Computer Vision Engineer",
+          "bio": "Computer vision engineering, worked in ocean carbon sequestration (Running Tide), Breathily co-founder — RGB-D lung-function testing for ALS, interested in mental health tech and democracy tech, published research at UCSF & UC Berkeley, Founder of FOIA-FLUENT.",
+          "linkedin": "",
+          "motivation": "He has aimed computer vision at ocean carbon removal and at lung-function testing for ALS patients. He founded FOIA-Fluent on the same instinct: the public record should be legible to the people it is actually about.",
+          "tint": "green"
+        },
+        {
+          "name": "Tony",
+          "image": "/images/tony_headshot.png",
+          "role": "Pro Bono Client Success",
+          "bio": "Customer Success Manager, Workday nonprofit accounts, enterprise adoption for mission-driven orgs, NYC Parks volunteer event organizer, leads the Nonprofit Success Portal and Agentic Onboarding Design.",
+          "linkedin": "",
+          "motivation": "He spends weekdays making enterprise software actually work for nonprofits and weekends organizing volunteers in NYC parks. Adoption, not invention, is where most civic tech dies.",
+          "tint": "blue"
+        }
+      ]
+    }
+  ]
+}

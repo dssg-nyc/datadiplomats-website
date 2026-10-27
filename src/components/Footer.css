@@ -1,0 +1,213 @@
+/* Site footer — navy band shared by every page. Columns split the two
+   audiences the same way the header does: nonprofits, then volunteers. */
+
+.modern-footer {
+  background: var(--gradient-primary);
+  color: white;
+  padding: var(--space-2xl) 0 0;
+  margin-top: auto;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+  gap: var(--space-2xl);
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-logo-img {
+  width: 52px;
+  height: 52px;
+  background: white;
+  border-radius: 50%;
+  padding: 4px;
+  object-fit: contain;
+}
+
+.footer-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.footer-brand-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
+.footer-brand-sub {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.footer-description {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer-social {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: var(--space-xs);
+}
+
+.footer-social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.footer-social-link:hover {
+  background: var(--accent-orange);
+  transform: translateY(-2px);
+}
+
+.footer-social-link img {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-column-title {
+  margin: 0 0 0.25rem;
+  font-family: var(--font-primary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-sand);
+}
+
+.footer-column a {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.footer-column a:hover {
+  color: white;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-column a.footer-donate {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--accent-orange);
+  color: white;
+  font-weight: 600;
+}
+
+.footer-column a.footer-donate:hover {
+  background: #A8440B;
+  text-decoration: none;
+}
+
+.footer-bottom {
+  padding: 1.4rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.footer-bottom-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.footer-bottom p,
+.footer-address {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.15rem;
+}
+
+.footer-legal a,
+.footer-link-button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.88);
+  cursor: pointer;
+}
+
+.footer-legal a:hover,
+.footer-link-button:hover,
+.footer-link-button:focus-visible {
+  color: white;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 1024px) {
+  .footer-top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-xl);
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-inner {
+    padding: 0 var(--space-md);
+  }
+
+  .footer-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

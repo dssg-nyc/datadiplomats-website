@@ -1,0 +1,192 @@
+.book-section {
+  display: block;
+  padding: var(--space-3xl) 0;
+  background: var(--paper-deep);
+  border-top: 1px solid rgba(30, 41, 59, 0.1);
+}
+
+.book-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.book-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  max-width: 48rem;
+}
+
+.book-section .section-subtitle {
+  font-size: 1.1875rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Partnership Grid */
+.partnership-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.partnership-info {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--surface-border);
+  border-top: 6px solid var(--primary-blue);
+  height: fit-content;
+}
+
+.partnership-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: var(--space-md);
+}
+
+.info-list {
+  margin-bottom: var(--space-lg);
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: var(--radius-md);
+  background: #E7EDF7;
+  color: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--space-md);
+}
+
+.info-content h4 {
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: var(--space-xs);
+  font-size: 1.125rem;
+}
+
+.info-content p {
+  color: var(--gray-600);
+  line-height: 1.5;
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+/* Contact Alternatives */
+.contact-alternatives {
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--surface-border);
+}
+
+.contact-alternatives h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: var(--space-md);
+}
+
+.contact-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.contact-address {
+  margin: 0;
+  font-weight: 600;
+  color: var(--primary-blue);
+}
+
+/* Calendly Container */
+.calendly-container {
+  display: flex;
+  justify-content: center;
+}
+
+.calendly-wrapper {
+  width: 100%;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  border: 1px solid var(--surface-border);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .partnership-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+  
+  .calendly-container {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .book-section {
+    padding: var(--space-2xl) 0;
+  }
+  
+  .partnership-info {
+    padding: var(--space-xl);
+  }
+  
+  .info-item {
+    padding: var(--space-sm);
+  }
+  
+  .info-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .contact-options {
+    flex-direction: column;
+  }
+  
+  .contact-options .button {
+    flex: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .partnership-info {
+    padding: var(--space-lg);
+  }
+  
+  .info-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .info-icon {
+    margin-right: 0;
+    margin-bottom: var(--space-sm);
+  }
+}
