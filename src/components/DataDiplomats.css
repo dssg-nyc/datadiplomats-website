@@ -6,8 +6,6 @@
 
 .dd-page {
   background: var(--paper);
-  /* Clears the fixed header. */
-  padding-top: 80px;
 }
 
 /* App.css gives every <section> a flex centre and 6rem padding; these
@@ -35,9 +33,12 @@
   white-space: nowrap;
 }
 
-/* ---------- Sub bar: breadcrumb + in-page nav ---------- */
+/* ---------- Site bar: brand + nav, shown on every page ---------- */
 
 .dd-subbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   background: var(--surface);
   border-bottom: 1px solid var(--surface-border);
 }
@@ -1153,8 +1154,9 @@
 }
 
 @media (max-width: 768px) {
-  .dd-page {
-    padding-top: 70px;
+  /* The nav wraps onto several lines here, so let it scroll away. */
+  .dd-subbar {
+    position: static;
   }
 
   .dd-wrap,
