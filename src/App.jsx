@@ -3,7 +3,6 @@ import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Blog from './components/Blog';
-import BlogPost from './components/BlogPost';
 import DataDiplomats from './components/DataDiplomats';
 import Portfolio from './components/Portfolio';
 import ScrollToTop from './components/ScrollToTop';
@@ -28,7 +27,7 @@ function App() {
           <Route path="/" element={<DataDiplomats />} />
           <Route path="/diplomats" element={<ToHome />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/blog/*" element={<Navigate to="/blog" replace />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/cookies" element={<CookiePolicy />} />
