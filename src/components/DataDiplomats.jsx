@@ -181,10 +181,10 @@ const VOLUNTEER_SKILLS = [
 ];
 
 const KEY_DATES = [
-  { label: 'Applications open', value: 'TBA' },
-  { label: 'Applications close', value: 'TBA' },
-  { label: 'In-person kickoff', value: 'TBA' },
-  { label: 'Capstone showcase', value: 'TBA' },
+  { label: 'Applications open', value: 'Now' },
+  { label: 'Applications close', value: 'December 1, 2026' },
+  { label: 'In-person kickoff', value: 'First week of January' },
+  { label: 'Capstone showcase', value: 'May 2027' },
 ];
 
 // Same four faces and inks as the design's hero grid.
@@ -289,7 +289,7 @@ const DataDiplomats = () => {
       <section className="dd-section dd-hero">
         <div className="dd-wrap dd-hero-inner">
           <div className="dd-hero-copy">
-            <p className="eyebrow">{COHORT_LABEL} · Applications open soon</p>
+            <p className="eyebrow">{COHORT_LABEL} · Applications open now</p>
             <h1 className="dd-hero-title">
               <span className="dd-hero-title-fixed">
                 Data Diplomats
@@ -560,7 +560,7 @@ const DataDiplomats = () => {
             <a className="button accent" href={APPLY_URL} target="_blank" rel="noopener noreferrer">
               Apply now
             </a>
-            <span className="dd-cta-note">Applications for Cohort 3 open soon.</span>
+            <span className="dd-cta-note">Applications for Cohort 3 are open now.</span>
           </div>
         </div>
       </section>
