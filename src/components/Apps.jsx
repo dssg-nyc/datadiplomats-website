@@ -1,4 +1,4 @@
-import './Portfolio.css';
+import './Apps.css';
 import Seo from './Seo';
 import PageIntro from './PageIntro';
 import ImpactCarousel from './carousel/ImpactCarousel';
@@ -7,16 +7,16 @@ import siteProperties from '../data/siteproperties.json';
 
 const TINTS = ['blue', 'orange', 'green'];
 
-const Portfolio = () => (
+const Apps = () => (
   <div className="portfolio-page">
     <Seo
-      title="Our Work - Data Diplomats"
+      title="Apps - Data Diplomats"
       description="Open source civic tech built by NYC x DSSG volunteers — FOIA Fluent, Unredacted Monitor, GrantPilot AI, the NYC Land Use & ZAP Tracker, and The City Ledger."
       type="website"
-      name="Our Work"
+      name="Apps"
     />
 
-    <PageIntro eyebrow="Our work" title={<>Open-source civic tech, <em>free to use.</em></>}>
+    <PageIntro eyebrow="Apps" title={<>Open-source civic tech, <em>free to use.</em></>}>
       Tools our volunteers have built for nonprofits, reporters, and residents — each one aimed at
       making a public system easier to see, use, or fund.
     </PageIntro>
@@ -74,4 +74,4 @@ const Portfolio = () => (
   </div>
 );
 
-export default Portfolio;
+export default Apps;

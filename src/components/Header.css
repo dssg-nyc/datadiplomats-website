@@ -133,6 +133,70 @@
   box-shadow: var(--shadow-md);
 }
 
+/* ---- Our work dropdown: opens on hover, click/tap and keyboard focus ---- */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.nav-dropdown-toggle::after {
+  content: "";
+  display: inline-block;
+  margin-left: 0.4rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.nav-dropdown:hover .nav-dropdown-toggle::after,
+.nav-dropdown.is-open .nav-dropdown-toggle::after {
+  transform: translateY(1px) rotate(-135deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 11rem;
+  /* The top padding bridges the gap so hover is not lost between toggle and menu. */
+  padding-top: 0.4rem;
+  display: none;
+  z-index: 10;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.is-open .nav-dropdown-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-dropdown-menu .nav-dropdown-link {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-bottom-width: 0;
+  border-radius: 0;
+  padding: 0.65rem 1rem;
+}
+
+.nav-dropdown-menu .nav-dropdown-link:first-child {
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.nav-dropdown-menu .nav-dropdown-link:last-child {
+  border-bottom-width: 1px;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
 .hidden-nav-item {
   display: none;
 }
@@ -263,6 +327,34 @@
     color: var(--primary-blue);
     padding-left: var(--space-md);
     box-shadow: inset 3px 0 0 var(--primary-orange);
+  }
+
+  /* In the stacked sheet the three pages sit under an "Our work" label. */
+  .nav-dropdown-toggle {
+    width: 100%;
+    text-align: left;
+    pointer-events: none;
+  }
+
+  .nav-dropdown-toggle::after {
+    display: none;
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+  }
+
+  .nav-menu .nav-dropdown-menu .nav-dropdown-link {
+    border: 0;
+    border-bottom: 1px solid var(--paper-deep);
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    font-weight: 500;
+    padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-lg);
   }
 
   .nav-menu .nav-link.button-nav {

@@ -1,5 +1,5 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import SectionLink from './SectionLink';
 import diplomatsData from '../data/diplomats.json';
 import './Header.css';
@@ -10,12 +10,25 @@ import './Header.css';
 // Kept in sync with the breakpoint in Header.css.
 const DESKTOP_QUERY = '(min-width: 1281px)';
 
+const OUR_WORK_LINKS = [
+  { label: 'Workshops', to: '/workshops' },
+  { label: 'Research', to: '/research' },
+  { label: 'Apps', to: '/apps' },
+];
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isWorkOpen, setIsWorkOpen] = useState(false);
+  const workRef = useRef(null);
   const location = useLocation();
 
-  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
+  const closeMenu = useCallback(() => {
+    setIsMenuOpen(false);
+    setIsWorkOpen(false);
+  }, []);
+
+  const isWorkActive = OUR_WORK_LINKS.some(({ to }) => location.pathname === to);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,6 +72,31 @@ const Header = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isMenuOpen, closeMenu]);
+
+  // The Our work dropdown also opens on hover (CSS); this handles click, tap and keyboard.
+  useEffect(() => {
+    if (!isWorkOpen) {
+      return undefined;
+    }
+
+    const handlePointer = (event) => {
+      if (!workRef.current?.contains(event.target)) {
+        setIsWorkOpen(false);
+      }
+    };
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsWorkOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handlePointer);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handlePointer);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isWorkOpen]);
 
   // Widening to desktop hides the toggle — close so the scroll lock lifts with it.
   useEffect(() => {
@@ -115,9 +153,24 @@ const Header = () => {
 
             {/* Right group: the other pages, set apart so they read as their own track. */}
             <span className="nav-divider" aria-hidden="true" />
-            <NavLink to="/portfolio" className="nav-link" onClick={closeMenu}>
-              Our work
-            </NavLink>
+            <div className={`nav-dropdown ${isWorkOpen ? 'is-open' : ''}`} ref={workRef}>
+              <button
+                type="button"
+                className={`nav-link nav-dropdown-toggle ${isWorkActive ? 'active' : ''}`}
+                aria-expanded={isWorkOpen}
+                aria-controls="our-work-menu"
+                onClick={() => setIsWorkOpen((open) => !open)}
+              >
+                Our work
+              </button>
+              <div id="our-work-menu" className="nav-dropdown-menu">
+                {OUR_WORK_LINKS.map(({ label, to }) => (
+                  <NavLink key={to} to={to} className="nav-link nav-dropdown-link" onClick={closeMenu}>
+                    {label}
+                  </NavLink>
+                ))}
+              </div>
+            </div>
             <NavLink to="/blog" className="nav-link" onClick={closeMenu}>
               Blog
             </NavLink>

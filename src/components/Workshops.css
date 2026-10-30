@@ -1,0 +1,104 @@
+/* Workshops: one card per Luma event, register button at the top. */
+
+.workshops-page {
+  background: var(--paper);
+}
+
+/* App.css gives every <section> a flex centre and 6rem padding; these
+   sections manage their own layout. */
+section.workshops-list {
+  display: block;
+  padding: 0 0 var(--space-3xl);
+  overflow: visible;
+}
+
+.workshops-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.workshop {
+  padding: var(--space-xl);
+}
+
+.workshop-title {
+  margin: 0 0 var(--space-sm);
+}
+
+.workshop-facts {
+  list-style: none;
+  margin: 0 0 var(--space-md);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: var(--gray-700);
+}
+
+.workshop-facts strong {
+  display: inline-block;
+  min-width: 4.5rem;
+  color: var(--primary-blue);
+}
+
+.workshop-summary {
+  margin: 0 0 var(--space-md);
+}
+
+.workshop-body {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--surface-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.workshop-subhead {
+  margin: 0 0 var(--space-xs);
+  color: var(--primary-blue);
+}
+
+.workshop-body p {
+  margin: 0;
+}
+
+.workshop-list,
+.workshop-builds {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.workshops-note {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+@media (max-width: 768px) {
+  .workshops-wrap {
+    padding: 0 var(--space-md);
+  }
+
+  .workshop {
+    padding: var(--space-lg) var(--space-md);
+  }
+}
+
+.workshops-note-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--primary-blue);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -59,7 +59,7 @@ const AiPolicy = () => {
         </li>
         <li>
           In-house AI tools offered to nonprofits (see our{' '}
-          <Link to="/portfolio">portfolio</Link>).
+          <Link to="/apps">apps</Link>).
         </li>
       </ul>
       <p>
