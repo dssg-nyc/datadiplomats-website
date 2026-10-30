@@ -1,4 +1,4 @@
-/* Workshops: one card per Luma event, register button at the top. */
+/* Workshops: the Luma event page, embedded as the body of the page. */
 
 .workshops-page {
   background: var(--paper);
@@ -13,7 +13,7 @@ section.workshops-list {
 }
 
 .workshops-wrap {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 var(--space-lg);
   display: flex;
@@ -21,84 +21,53 @@ section.workshops-list {
   gap: var(--space-xl);
 }
 
-.workshop {
-  padding: var(--space-xl);
+.workshop-frame {
+  padding: var(--space-sm);
+  overflow: hidden;
 }
 
-.workshop-title {
-  margin: 0 0 var(--space-sm);
+/* Tall enough to show the event without a second scrollbar on most screens;
+   Luma scrolls any remainder inside the frame. */
+.luma-event-embed {
+  display: block;
+  width: 100%;
+  height: max(900px, calc(100vh - 80px));
+  border: 0;
+  border-radius: var(--radius-md);
+  background: white;
 }
 
-.workshop-facts {
-  list-style: none;
-  margin: 0 0 var(--space-md);
-  padding: 0;
+.workshop-blocked {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  color: var(--gray-700);
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-2xl) var(--space-md);
+  text-align: center;
 }
 
-.workshop-facts strong {
-  display: inline-block;
-  min-width: 4.5rem;
-  color: var(--primary-blue);
-}
-
-.workshop-summary {
-  margin: 0 0 var(--space-md);
-}
-
-.workshop-body {
-  margin-top: var(--space-xl);
-  padding-top: var(--space-lg);
-  border-top: 1px solid var(--surface-border);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-.workshop-subhead {
-  margin: 0 0 var(--space-xs);
-  color: var(--primary-blue);
-}
-
-.workshop-body p {
+.workshop-blocked p {
   margin: 0;
 }
 
-.workshop-list,
-.workshop-builds {
-  margin: 0;
-  padding-left: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.workshops-note {
-  margin: 0;
+.workshop-fallback {
+  margin: var(--space-sm) 0 0;
+  text-align: center;
   font-size: 0.875rem;
   color: var(--gray-600);
 }
 
-@media (max-width: 768px) {
-  .workshops-wrap {
-    padding: 0 var(--space-md);
-  }
-
-  .workshop {
-    padding: var(--space-lg) var(--space-md);
-  }
-}
-
-.workshops-note-link {
-  background: none;
-  border: 0;
-  padding: 0;
-  font: inherit;
+.workshop-fallback a {
   color: var(--primary-blue);
   font-weight: 600;
-  text-decoration: underline;
-  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .workshops-wrap {
+    padding: 0 var(--space-sm);
+  }
+
+  .luma-event-embed {
+    height: max(800px, calc(100vh - 70px));
+  }
 }
