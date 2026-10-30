@@ -11,7 +11,7 @@ import './Header.css';
 const DESKTOP_QUERY = '(min-width: 1281px)';
 
 const OUR_WORK_LINKS = [
-  { label: 'Workshops', to: '/workshops' },
+  { label: 'AI Workshops', to: '/workshops' },
   { label: 'Research', to: '/research' },
   { label: 'Apps', to: '/apps' },
 ];
@@ -171,9 +171,6 @@ const Header = () => {
                 ))}
               </div>
             </div>
-            <NavLink to="/blog" className="nav-link" onClick={closeMenu}>
-              Blog
-            </NavLink>
             <a
               href="https://givebutter.com/aiforgood"
               target="_blank"

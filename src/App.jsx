@@ -2,7 +2,6 @@ import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Blog from './components/Blog';
 import DataDiplomats from './components/DataDiplomats';
 import Apps from './components/Apps';
 import Research from './components/Research';
@@ -28,8 +27,6 @@ function App() {
         <Routes>
           <Route path="/" element={<DataDiplomats />} />
           <Route path="/diplomats" element={<ToHome />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/*" element={<Navigate to="/blog" replace />} />
           <Route path="/workshops" element={<Workshops />} />
           <Route path="/research" element={<Research />} />
           <Route path="/apps" element={<Apps />} />
