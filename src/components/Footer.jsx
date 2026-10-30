@@ -1,17 +1,24 @@
 import { Link } from 'react-router-dom';
 import './Footer.css';
 import siteProperties from '../data/siteproperties.json';
-import diplomatsData from '../data/diplomats.json';
 import socialIcons from '../data/socialicons.json';
-import SectionLink from './SectionLink';
 import { openCookieSettings } from '../consent/consent';
 
-const MORE_LINKS = [
+// Same footer as the NYC x DSSG site. Its homepage sections and Events page
+// live there, so those links leave for dssg-nyc.github.io.
+const DSSG = siteProperties.dssgUrl;
+
+const NONPROFIT_LINKS = [
+  { label: 'Partner with us', href: `${DSSG}#/#projects` },
+  { label: 'Impact stories', href: `${DSSG}#/#writing` },
+  { label: 'Book a call', href: `${DSSG}#/#book` },
+];
+
+const VOLUNTEER_LINKS = [
   { label: 'Volunteer with us', href: siteProperties.volunteerFormUrl },
+  { label: 'Data Diplomats Program', to: '/' },
   { label: 'Our work', to: '/portfolio' },
-  { label: 'Blog', to: '/blog' },
-  { label: 'Events', href: siteProperties.eventsUrl },
-  { label: 'NYC x DSSG', href: siteProperties.dssgUrl },
+  { label: 'Events', href: `${DSSG}#/events` },
 ];
 
 const CONNECT_LINKS = [
@@ -28,9 +35,10 @@ const Footer = () => {
         <div className="footer-top">
           <div className="footer-brand">
             <div className="footer-logo">
+              <img src="/images/logo3.png" alt="" className="footer-logo-img" />
               <div className="footer-brand-text">
-                <span className="footer-brand-name">Data Diplomats</span>
-                <span className="footer-brand-sub">for Nonprofits</span>
+                <span className="footer-brand-name">NYC DSSG</span>
+                <span className="footer-brand-sub">Data Science for Social Good</span>
               </div>
             </div>
             <p className="footer-description">
@@ -56,18 +64,18 @@ const Footer = () => {
           </div>
 
           <div className="footer-columns">
-            <nav className="footer-column" aria-label="The program">
-              <h2 className="footer-column-title">The program</h2>
-              {diplomatsData.sections.map(({ id, label }) => (
-                <SectionLink key={id} section={id}>
-                  {label}
-                </SectionLink>
+            <nav className="footer-column" aria-label="For nonprofits">
+              <h2 className="footer-column-title">For nonprofits</h2>
+              {NONPROFIT_LINKS.map((link) => (
+                <a key={link.label} href={link.href}>
+                  {link.label}
+                </a>
               ))}
             </nav>
 
-            <nav className="footer-column" aria-label="More">
-              <h2 className="footer-column-title">More</h2>
-              {MORE_LINKS.map((link) =>
+            <nav className="footer-column" aria-label="For volunteers">
+              <h2 className="footer-column-title">For volunteers</h2>
+              {VOLUNTEER_LINKS.map((link) =>
                 link.to ? (
                   <Link key={link.label} to={link.to}>
                     {link.label}

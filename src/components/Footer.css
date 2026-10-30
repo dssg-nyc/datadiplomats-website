@@ -35,6 +35,15 @@
   gap: 0.75rem;
 }
 
+.footer-logo-img {
+  width: 52px;
+  height: 52px;
+  background: white;
+  border-radius: 50%;
+  padding: 4px;
+  object-fit: contain;
+}
+
 .footer-brand-text {
   display: flex;
   flex-direction: column;

@@ -524,11 +524,11 @@ button:focus-visible {
   }
 }
 
-/* Page intro — the opening block on secondary pages (Our Work).
-   Mirrors the program page's hero copy. */
+/* Page intro — the opening block on secondary pages (Events, Our Work),
+   padded to clear the fixed header. Mirrors the program page's hero copy. */
 .page-intro {
   background: var(--paper);
-  padding: var(--space-2xl) 0 var(--space-xl);
+  padding: calc(80px + var(--space-2xl)) 0 var(--space-xl);
 }
 
 .page-intro-inner {
@@ -565,7 +565,7 @@ button:focus-visible {
 
 @media (max-width: 768px) {
   .page-intro {
-    padding: var(--space-xl) 0 var(--space-lg);
+    padding: calc(70px + var(--space-xl)) 0 var(--space-lg);
   }
 
   .page-intro-inner {
@@ -606,7 +606,13 @@ h3,
   mix-blend-mode: screen;
 }
 
-/* Section links land just below the sticky site bar instead of under it. */
+/* Section links land just below the fixed header instead of under it. */
 section[id] {
-  scroll-margin-top: var(--sitebar-h);
+  scroll-margin-top: 80px;
+}
+
+@media (max-width: 768px) {
+  section[id] {
+    scroll-margin-top: 70px;
+  }
 }
