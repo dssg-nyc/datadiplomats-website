@@ -3,7 +3,42 @@
     {
       "lumaEventId": "evt-rNPx0ynBeaYVGjT",
       "lumaUrl": "https://luma.com/ukcgf848",
-      "title": "Data Diplomats AI Workshop for Nonprofits (Intermediate Level)"
+      "title": "Data Diplomats AI Workshop for Nonprofits (Intermediate Level)",
+      "startAt": "2026-11-13T20:00:00Z",
+      "durationMinutes": 90,
+      "timeZone": "America/New_York",
+      "format": "Online (Google Meet)",
+      "price": "$49",
+      "summary": "Over 90 minutes, we engineer four practical AI workflows for nonprofit operations, step by step, and practice prompting so you leave with something you can run at your organization.",
+      "schedule": [
+        "First 30 minutes: best prompting practices",
+        "Next hour: practice prompting and debugging your workflow"
+      ],
+      "builds": [
+        {
+          "title": "Meeting notes to CRM",
+          "detail": "Save meeting summaries, action items and key decisions into your CRM."
+        },
+        {
+          "title": "Grant opportunity monitor",
+          "detail": "Post relevant new grants, with deadlines, into your Slack channel."
+        },
+        {
+          "title": "Social media drafting",
+          "detail": "Draft posts in your organization’s voice and queue them in Buffer for review."
+        },
+        {
+          "title": "Volunteer communication agent",
+          "detail": "Draft shift reminders, onboarding messages and thank-yous, with human review before anything is sent."
+        }
+      ],
+      "audience": "An intermediate workshop. It assumes you already know the basics of AI and large language models, such as what a prompt is, why models sometimes make things up, and why human review matters.",
+      "prerequisites": "Set up and test accounts for Granola, Claude, Slack, Gmail, Google Workspace and Buffer (a free account is enough) before you come. The Luma page links to each getting-started guide.",
+      "bring": [
+        "A laptop with a working microphone and camera, and a stable internet connection",
+        "A real or sample workflow from your organization that you would like to automate",
+        "Any CRM you use, or a free trial, so we can connect a test record"
+      ]
     }
   ]
 }

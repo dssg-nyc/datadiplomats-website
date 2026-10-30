@@ -1,4 +1,4 @@
-/* Workshops: the Luma event page, embedded as the body of the page. */
+/* AI Workshops: the event description beside Luma's registration card. */
 
 .workshops-page {
   background: var(--paper);
@@ -13,28 +13,85 @@ section.workshops-list {
 }
 
 .workshops-wrap {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--space-lg);
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: var(--space-2xl);
 }
 
-.workshop-frame {
+/* Description on the left, registration card on the right. */
+.workshop {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.workshop-details {
+  grid-column: 1;
+  grid-row: 1;
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.workshop-register {
+  grid-column: 2;
+  grid-row: 1;
   padding: var(--space-sm);
   overflow: hidden;
+  position: sticky;
+  top: calc(80px + var(--space-sm));
 }
 
-/* The full event page is long (cover, description, tickets), so the frame is
-   tall; Luma scrolls any remainder inside the frame. */
 .luma-event-embed {
   display: block;
   width: 100%;
-  height: max(1300px, calc(100vh - 80px));
+  height: 620px;
   border: 0;
   border-radius: var(--radius-md);
   background: white;
+}
+
+.workshop-title {
+  margin: 0;
+}
+
+.workshop-facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: var(--gray-700);
+}
+
+.workshop-facts strong {
+  display: inline-block;
+  min-width: 4.5rem;
+  color: var(--primary-blue);
+}
+
+.workshop-details p {
+  margin: 0;
+}
+
+.workshop-subhead {
+  margin: 0 0 var(--space-xs);
+  color: var(--primary-blue);
+}
+
+.workshop-list,
+.workshop-builds {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
 .workshop-blocked {
@@ -42,7 +99,7 @@ section.workshops-list {
   flex-direction: column;
   align-items: center;
   gap: var(--space-md);
-  padding: var(--space-2xl) var(--space-md);
+  padding: var(--space-xl) var(--space-sm);
   text-align: center;
 }
 
@@ -62,12 +119,33 @@ section.workshops-list {
   font-weight: 600;
 }
 
+/* Below this width the card goes first, so registration is not buried. */
+@media (max-width: 960px) {
+  .workshop {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .workshop-register,
+  .workshop-details {
+    grid-column: 1;
+  }
+
+  .workshop-register {
+    grid-row: 1;
+    position: static;
+  }
+
+  .workshop-details {
+    grid-row: 2;
+  }
+}
+
 @media (max-width: 768px) {
   .workshops-wrap {
     padding: 0 var(--space-sm);
   }
 
-  .luma-event-embed {
-    height: max(1500px, calc(100vh - 70px));
+  .workshop-details {
+    padding: var(--space-lg) var(--space-md);
   }
 }
