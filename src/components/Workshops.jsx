@@ -20,14 +20,14 @@ const Workshops = () => {
   return (
     <div className="workshops-page">
       <Seo
-        title="Workshops - Data Diplomats"
+        title="AI Workshops - Data Diplomats"
         description="Hands-on AI workshops for nonprofits from Data Diplomats. Practice prompting and build workflows you can run at your organization."
         type="website"
-        name="Workshops"
+        name="AI Workshops"
       />
 
-      <PageIntro eyebrow="Workshops" title={<>Learn AI by <em>building with it.</em></>}>
-        Hands-on workshops for nonprofit staff and volunteers. Register right here.
+      <PageIntro eyebrow="AI Workshops" title={<>Learn AI by <em>building with it.</em></>}>
+        Hands-on AI workshops for nonprofit staff and volunteers. Register right here.
       </PageIntro>
 
       <section className="workshops-list">
