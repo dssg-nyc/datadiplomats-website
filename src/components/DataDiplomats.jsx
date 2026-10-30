@@ -310,8 +310,9 @@ const DataDiplomats = () => {
               </span>
             </h1>
             <p className="dd-hero-sub">
-              Leadership and human-centered AI workshops, then a capstone project — for people who
-              want to build something for their community.
+              From human-centered, frontier AI workshops to a hands-on capstone project, this is your
+              launchpad to lead with empathy, master next-generation tech, and build a real-world
+              solution that lifts up your community.
             </p>
             <div className="dd-cta-row">
               <a className="button accent" href={APPLY_URL} target="_blank" rel="noopener noreferrer">
