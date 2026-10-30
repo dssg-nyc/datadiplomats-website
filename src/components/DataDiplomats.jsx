@@ -3,11 +3,11 @@ import './DataDiplomats.css';
 import diplomatsData from '../data/diplomats.json';
 import siteProperties from '../data/siteproperties.json';
 import Seo from './Seo';
-import { Link } from 'react-router-dom';
 import SectionLink from './SectionLink';
 
 const APPLY_URL = diplomatsData.applyUrl;
 const VOLUNTEER_FORM_URL = siteProperties.volunteerFormUrl;
+const EVENTS_URL = 'https://luma.com/calendar/cal-4VqcQEpR4zqBF8Q';
 const COHORT_LABEL = 'Cohort 3 · Spring 2027';
 
 // The headline cycles through these; the full list is also read out once to
@@ -279,30 +279,11 @@ const DataDiplomats = () => {
   return (
     <div className="dd-page">
       <Seo
-        title="Data Diplomats Program - NYC x DSSG"
+        title="Data Diplomats Program"
         description="A leadership and human-centered AI program for people who want to build something for their community — plus a flexible volunteer network. Open to all career backgrounds."
         type="website"
         name="Data Diplomats for Nonprofits"
       />
-
-      {/* Breadcrumb + in-page nav, after the way Girls Who Code and Mozilla
-          orient you inside a long program page. */}
-      <div className="dd-subbar">
-        <div className="dd-subbar-inner">
-          <nav aria-label="Breadcrumb" className="dd-breadcrumb">
-            <Link to="/">Home</Link>
-            <span aria-hidden="true">/</span>
-            <span aria-current="page">Data Diplomats Program</span>
-          </nav>
-          <nav aria-label="On this page" className="dd-jump">
-            <SectionLink page="/diplomats" section="ways">Ways to volunteer</SectionLink>
-            <SectionLink page="/diplomats" section="program">What you’ll learn</SectionLink>
-            <SectionLink page="/diplomats" section="expectations">Requirements</SectionLink>
-            <SectionLink page="/diplomats" section="cohort">The diplomats</SectionLink>
-            <SectionLink page="/diplomats" section="apply">Apply</SectionLink>
-          </nav>
-        </div>
-      </div>
 
       {/* HERO */}
       <section className="dd-section dd-hero">
@@ -336,13 +317,13 @@ const DataDiplomats = () => {
               <a className="button accent" href={APPLY_URL} target="_blank" rel="noopener noreferrer">
                 Apply now
               </a>
-              <SectionLink className="button quiet" page="/diplomats" section="program">
+              <SectionLink className="button quiet" section="program">
                 What you’ll learn
               </SectionLink>
             </div>
             <p className="dd-hero-alt">
               Want something more flexible?{' '}
-              <SectionLink page="/diplomats" section="ways">Join our volunteer network →</SectionLink>
+              <SectionLink section="ways">Join our volunteer network →</SectionLink>
             </p>
           </div>
 
@@ -418,7 +399,7 @@ const DataDiplomats = () => {
                 <a className="button accent" href={APPLY_URL} target="_blank" rel="noopener noreferrer">
                   Apply for Cohort 3
                 </a>
-                <SectionLink className="dd-way-link" page="/diplomats" section="program">
+                <SectionLink className="dd-way-link" section="program">
                   See the curriculum ↓
                 </SectionLink>
               </div>
@@ -443,9 +424,9 @@ const DataDiplomats = () => {
                 <a className="button ink" href={VOLUNTEER_FORM_URL} target="_blank" rel="noopener noreferrer">
                   Join as a volunteer
                 </a>
-                <Link className="dd-way-link" to="/events">
+                <a className="dd-way-link" href={EVENTS_URL} target="_blank" rel="noopener noreferrer">
                   Meet us at an event →
-                </Link>
+                </a>
               </div>
             </article>
           </div>
@@ -676,7 +657,7 @@ const DataDiplomats = () => {
               <a href={VOLUNTEER_FORM_URL} target="_blank" rel="noopener noreferrer">
                 Join the volunteer network
               </a>{' '}
-              or <Link to="/events">come to an event</Link> first.
+              or <a href={EVENTS_URL} target="_blank" rel="noopener noreferrer">come to an event</a> first.
             </p>
           </div>
           <div className="dd-dates">

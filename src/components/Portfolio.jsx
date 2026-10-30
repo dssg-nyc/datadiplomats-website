@@ -3,7 +3,7 @@ import Seo from './Seo';
 import PageIntro from './PageIntro';
 import ImpactCarousel from './carousel/ImpactCarousel';
 import stories from '../data/impactstories.json';
-import SectionLink from './SectionLink';
+import siteProperties from '../data/siteproperties.json';
 
 const TINTS = ['blue', 'orange', 'green'];
 
@@ -65,9 +65,9 @@ const Portfolio = () => (
             <h2 className="portfolio-cta-title">Need something like this for your organization?</h2>
             <p className="portfolio-cta-body">Tell us what’s hard. Our volunteers build it with you, pro bono.</p>
           </div>
-          <SectionLink className="button accent" section="book">
+          <a className="button accent" href={siteProperties.calendlyUrl} target="_blank" rel="noopener noreferrer">
             Book a free call
-          </SectionLink>
+          </a>
         </div>
       </div>
     </section>
