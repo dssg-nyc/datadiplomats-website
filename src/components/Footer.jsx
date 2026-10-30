@@ -9,7 +9,9 @@ import { openCookieSettings } from '../consent/consent';
 // The NYC x DSSG footer's design, carrying Data Diplomats links only.
 const MORE_LINKS = [
   { label: 'Volunteer with us', href: siteProperties.volunteerFormUrl },
-  { label: 'Our work', to: '/portfolio' },
+  { label: 'Workshops', to: '/workshops' },
+  { label: 'Research', to: '/research' },
+  { label: 'Apps', to: '/apps' },
   { label: 'Blog', to: '/blog' },
 ];
 

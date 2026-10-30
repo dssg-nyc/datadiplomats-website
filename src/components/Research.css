@@ -1,0 +1,18 @@
+.research-page {
+  background: var(--paper);
+}
+
+/* App.css gives every <section> a flex centre and 6rem padding; this one
+   only holds the button under the intro. */
+section.page-cta-row {
+  display: block;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg) var(--space-3xl);
+}
+
+@media (max-width: 768px) {
+  section.page-cta-row {
+    padding: 0 var(--space-md) var(--space-2xl);
+  }
+}

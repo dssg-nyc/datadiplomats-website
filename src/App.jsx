@@ -4,7 +4,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Blog from './components/Blog';
 import DataDiplomats from './components/DataDiplomats';
-import Portfolio from './components/Portfolio';
+import Apps from './components/Apps';
+import Research from './components/Research';
+import Workshops from './components/Workshops';
 import ScrollToTop from './components/ScrollToTop';
 import CookieConsent from './components/CookieConsent';
 import PrivacyPolicy from './components/legal/PrivacyPolicy';
@@ -28,7 +30,10 @@ function App() {
           <Route path="/diplomats" element={<ToHome />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/*" element={<Navigate to="/blog" replace />} />
-          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/workshops" element={<Workshops />} />
+          <Route path="/research" element={<Research />} />
+          <Route path="/apps" element={<Apps />} />
+          <Route path="/portfolio" element={<Navigate to="/apps" replace />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/cookies" element={<CookiePolicy />} />
           <Route path="/ai-policy" element={<AiPolicy />} />
