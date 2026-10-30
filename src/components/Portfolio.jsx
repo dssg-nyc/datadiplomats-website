@@ -10,7 +10,7 @@ const TINTS = ['blue', 'orange', 'green'];
 const Portfolio = () => (
   <div className="portfolio-page">
     <Seo
-      title="Our Work - NYC x DSSG"
+      title="Our Work - Data Diplomats"
       description="Open source civic tech built by NYC x DSSG volunteers — FOIA Fluent, Unredacted Monitor, GrantPilot AI, the NYC Land Use & ZAP Tracker, and The City Ledger."
       type="website"
       name="Our Work"

@@ -2,7 +2,7 @@
    Built on the shared warm-paper system in App.css: navy #002D72, accent
    orange #C9530E, green #2F6B52, Playfair Display over Inter. Layout cues
    come from Girls Who Code (labelled program facts, punchy headings) and
-   Mozilla's fellows page (breadcrumb, portrait-led hero). */
+   Mozilla's fellows page (portrait-led hero). */
 
 .dd-page {
   background: var(--paper);
@@ -33,53 +33,6 @@
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
-}
-
-/* ---------- Sub bar: breadcrumb + in-page nav ---------- */
-
-.dd-subbar {
-  background: var(--surface);
-  border-bottom: 1px solid var(--surface-border);
-}
-
-.dd-subbar-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0.85rem var(--space-lg);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-md);
-  flex-wrap: wrap;
-}
-
-.dd-breadcrumb,
-.dd-jump {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.8125rem;
-  flex-wrap: wrap;
-}
-
-.dd-jump {
-  gap: 1.4rem;
-}
-
-.dd-breadcrumb a,
-.dd-breadcrumb span {
-  color: var(--gray-500);
-  font-weight: 500;
-}
-
-.dd-breadcrumb [aria-current='page'] {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-.dd-jump a {
-  color: var(--primary-blue);
-  font-weight: 600;
 }
 
 /* ---------- Hero ---------- */
@@ -1157,8 +1110,7 @@
     padding-top: 70px;
   }
 
-  .dd-wrap,
-  .dd-subbar-inner {
+  .dd-wrap {
     padding-left: var(--space-md);
     padding-right: var(--space-md);
   }
@@ -1197,10 +1149,6 @@
 
   .dd-glance-item:last-child {
     border-bottom: none;
-  }
-
-  .dd-jump {
-    display: none;
   }
 
   /* One row of four keeps the faces without pushing the page down a screen. */

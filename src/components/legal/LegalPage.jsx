@@ -8,7 +8,7 @@ const LEGAL_EFFECTIVE_DATE = 'October 18, 2026';
 const LegalPage = ({ title, description, children }) => (
   <div className="legal-page">
     <Seo
-      title={`${title} - NYC x DSSG`}
+      title={`${title} - Data Diplomats`}
       description={description}
       type="website"
       name={title}

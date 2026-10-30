@@ -1,15 +1,14 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
-import siteProperties from '../data/siteproperties.json';
+import SectionLink from './SectionLink';
+import diplomatsData from '../data/diplomats.json';
 import './Header.css';
 
-// Same header as the NYC x DSSG site. Its sections and Events page live
-// there, so those links leave for dssg-nyc.github.io (a HashRouter site).
-const DSSG = siteProperties.dssgUrl;
+// The NYC x DSSG header's design, carrying Data Diplomats links only.
 
 // Above this width the full nav bar fits and the hamburger is hidden.
 // Kept in sync with the breakpoint in Header.css.
-const DESKTOP_QUERY = '(min-width: 1001px)';
+const DESKTOP_QUERY = '(min-width: 1281px)';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -83,8 +82,8 @@ const Header = () => {
             <Link to="/" className="logo-link">
               <img src="/images/logo3.png" alt="" className="logo-img" />
               <span className="logo-text">
-                <span className="logo-title">NYC-DSSG</span>
-                <span className="logo-subtitle">Data Diplomats</span>
+                <span className="logo-title">Data Diplomats</span>
+                <span className="logo-subtitle">For Nonprofits</span>
               </span>
             </Link>
           </div>
@@ -107,24 +106,20 @@ const Header = () => {
             className={`nav-menu ${isMenuOpen ? 'is-open' : ''}`}
             aria-label="Main navigation"
           >
-            {/* Left group: the nonprofit path through the site. */}
-            <a href={`${DSSG}#/#projects`} className="nav-link">
-              For Nonprofits
-            </a>
-            <a href={`${DSSG}#/#writing`} className="nav-link">
-              Impact Stories
-            </a>
-            <NavLink to="/portfolio" className="nav-link" onClick={closeMenu}>
-              Our Work
-            </NavLink>
-            <a href={`${DSSG}#/events`} className="nav-link">
-              Events
-            </a>
+            {/* Left group: sections of the program page. */}
+            {diplomatsData.sections.map(({ id, label }) => (
+              <SectionLink key={id} section={id} className="nav-link" onClick={closeMenu}>
+                {label}
+              </SectionLink>
+            ))}
 
-            {/* Right group: the volunteer path, set apart so it reads as its own track. */}
+            {/* Right group: the other pages, set apart so they read as their own track. */}
             <span className="nav-divider" aria-hidden="true" />
-            <NavLink to="/" end className="nav-link nav-link-program" onClick={closeMenu}>
-              Data Diplomats
+            <NavLink to="/portfolio" className="nav-link" onClick={closeMenu}>
+              Our work
+            </NavLink>
+            <NavLink to="/blog" className="nav-link" onClick={closeMenu}>
+              Blog
             </NavLink>
             <a
               href="https://givebutter.com/aiforgood"

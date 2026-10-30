@@ -285,25 +285,6 @@ const DataDiplomats = () => {
         name="Data Diplomats for Nonprofits"
       />
 
-      {/* Breadcrumb + in-page nav, after the way Girls Who Code and Mozilla
-          orient you inside a long program page. Home is the NYC x DSSG site. */}
-      <div className="dd-subbar">
-        <div className="dd-subbar-inner">
-          <nav aria-label="Breadcrumb" className="dd-breadcrumb">
-            <a href={siteProperties.dssgUrl}>Home</a>
-            <span aria-hidden="true">/</span>
-            <span aria-current="page">Data Diplomats Program</span>
-          </nav>
-          <nav aria-label="On this page" className="dd-jump">
-            {diplomatsData.sections.map(({ id, label }) => (
-              <SectionLink key={id} section={id}>
-                {label}
-              </SectionLink>
-            ))}
-          </nav>
-        </div>
-      </div>
-
       {/* HERO */}
       <section className="dd-section dd-hero">
         <div className="dd-wrap dd-hero-inner">
