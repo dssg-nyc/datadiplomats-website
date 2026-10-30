@@ -1,53 +1,18 @@
-/* The Substack embed fills the page between the fixed header and the footer. */
-
 .blog-page {
-  --blog-top: 80px; /* fixed header height, see Header.css */
-  --blog-bar: 2.75rem;
-  padding-top: var(--blog-top);
   background: var(--paper);
 }
 
-.blog-bar {
-  margin: 0;
-  height: var(--blog-bar);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 var(--space-lg);
-  background: var(--surface);
-  border-bottom: 1px solid var(--surface-border);
-  font-size: 0.875rem;
-}
-
-.blog-bar a {
-  color: var(--primary-blue);
-  font-weight: 600;
-}
-
-.blog-embed {
+/* App.css gives every <section> a flex centre and 6rem padding; this one
+   only holds the button under the intro. */
+section.blog-follow {
   display: block;
-  width: 100%;
-  height: calc(100vh - var(--blog-top) - var(--blog-bar));
-  min-height: 600px;
-  border: 0;
-  background: white;
-}
-
-.blog-blocked {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-md);
-  padding: var(--space-3xl) var(--space-md);
-  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg) var(--space-3xl);
 }
 
 @media (max-width: 768px) {
-  .blog-page {
-    --blog-top: 70px;
-  }
-
-  .blog-bar {
-    padding: 0 var(--space-md);
+  section.blog-follow {
+    padding: 0 var(--space-md) var(--space-2xl);
   }
 }
