@@ -15,7 +15,7 @@ npm run dev
 - `src/components/DataDiplomats.jsx`: the program page, served at `/`
 - `src/data/diplomats.json`: apply link, page sections and cohorts
 - `src/data/siteproperties.json`: organization details and external links
-- `src/data/blogs.json`, `src/data/impactstories.json`: Blog and Our work content
+- `src/data/impactstories.json`: Our work content (the Blog page embeds the Substack)
 - `public/images/`: images referenced by the components and data files
 
 ## Deploy
