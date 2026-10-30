@@ -1,0 +1,55 @@
+/* Site-wide top bar. --sitebar-h also sets how far below the top section
+   links land (see section[id] in App.css). */
+
+:root {
+  --sitebar-h: 3rem;
+}
+
+.sitebar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.sitebar-inner {
+  max-width: 1200px;
+  min-height: var(--sitebar-h);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  font-size: 0.8125rem;
+}
+
+.sitebar-brand {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.sitebar-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.sitebar-nav a {
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .sitebar-inner {
+    padding: 0 var(--space-md);
+  }
+
+  /* Phones get the brand only; the footer carries the same links. */
+  .sitebar-nav {
+    display: none;
+  }
+}

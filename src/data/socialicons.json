@@ -1,12 +1,5 @@
 {
-  "email": "images/social/envelope.svg",
-  "devDotTo": "images/social/devdotto.svg",
   "gitHub": "images/social/github.svg",
-  "instagram": "images/social/instagram.svg",
   "linkedIn": "images/social/linkedin.svg",
-  "substack": "images/social/substack.svg",
-  "twitter": "images/social/twitter.svg",
-  "facebook": "images/social/facebook.svg",
-  "youTube": "images/social/youtube.svg",
-  "mastodon": "images/social/mastodon.svg"
+  "substack": "images/social/substack.svg"
 }

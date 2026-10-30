@@ -1,23 +1,17 @@
 import { Link } from 'react-router-dom';
 import './Footer.css';
 import siteProperties from '../data/siteproperties.json';
+import diplomatsData from '../data/diplomats.json';
 import socialIcons from '../data/socialicons.json';
 import SectionLink from './SectionLink';
 import { openCookieSettings } from '../consent/consent';
-
-const PROGRAM_LINKS = [
-  { label: 'Ways to volunteer', section: 'ways' },
-  { label: 'What you’ll learn', section: 'program' },
-  { label: 'Requirements', section: 'expectations' },
-  { label: 'Apply', section: 'apply' },
-];
 
 const MORE_LINKS = [
   { label: 'Volunteer with us', href: siteProperties.volunteerFormUrl },
   { label: 'Our work', to: '/portfolio' },
   { label: 'Blog', to: '/blog' },
-  { label: 'Events', href: 'https://luma.com/calendar/cal-4VqcQEpR4zqBF8Q' },
-  { label: 'NYC x DSSG', href: 'https://dssg-nyc.github.io/' },
+  { label: 'Events', href: siteProperties.eventsUrl },
+  { label: 'NYC x DSSG', href: siteProperties.dssgUrl },
 ];
 
 const CONNECT_LINKS = [
@@ -64,9 +58,9 @@ const Footer = () => {
           <div className="footer-columns">
             <nav className="footer-column" aria-label="The program">
               <h2 className="footer-column-title">The program</h2>
-              {PROGRAM_LINKS.map((link) => (
-                <SectionLink key={link.label} section={link.section}>
-                  {link.label}
+              {diplomatsData.sections.map(({ id, label }) => (
+                <SectionLink key={id} section={id}>
+                  {label}
                 </SectionLink>
               ))}
             </nav>

@@ -7,7 +7,7 @@ import SectionLink from './SectionLink';
 
 const APPLY_URL = diplomatsData.applyUrl;
 const VOLUNTEER_FORM_URL = siteProperties.volunteerFormUrl;
-const EVENTS_URL = 'https://luma.com/calendar/cal-4VqcQEpR4zqBF8Q';
+const EVENTS_URL = siteProperties.eventsUrl;
 const COHORT_LABEL = 'Cohort 3 · Spring 2027';
 
 // The headline cycles through these; the full list is also read out once to
