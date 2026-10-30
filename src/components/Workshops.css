@@ -26,12 +26,12 @@ section.workshops-list {
   overflow: hidden;
 }
 
-/* Tall enough to show the event without a second scrollbar on most screens;
-   Luma scrolls any remainder inside the frame. */
+/* The full event page is long (cover, description, tickets), so the frame is
+   tall; Luma scrolls any remainder inside the frame. */
 .luma-event-embed {
   display: block;
   width: 100%;
-  height: max(900px, calc(100vh - 80px));
+  height: max(1300px, calc(100vh - 80px));
   border: 0;
   border-radius: var(--radius-md);
   background: white;
@@ -68,6 +68,6 @@ section.workshops-list {
   }
 
   .luma-event-embed {
-    height: max(800px, calc(100vh - 70px));
+    height: max(1500px, calc(100vh - 70px));
   }
 }

@@ -7,11 +7,11 @@ import './Workshops.css';
 
 const embedsAllowed = (preferences) => (preferences || defaultPreferences()).embeds;
 
-const embedUrl = (id) => `https://luma.com/embed/event/${id}/simple`;
-const eventUrl = (id) => `https://luma.com/event/${id}`;
+// The full Luma event page (cover, description, tickets and registration),
+// loaded in embed mode so it can sit inside this page.
+const embedUrl = (lumaUrl) => `${lumaUrl}?lm_source=embed`;
 
-// Each workshop is its own Luma event, shown in full: details, tickets and
-// registration all happen inside the embed.
+// Each workshop is its own Luma event, shown in full inside the page.
 const Workshops = () => {
   const [embeds, setEmbeds] = useState(() => embedsAllowed(readConsent()));
 
@@ -32,12 +32,12 @@ const Workshops = () => {
 
       <section className="workshops-list">
         <div className="workshops-wrap">
-          {workshopData.events.map(({ lumaEventId, title }) => (
+          {workshopData.events.map(({ lumaEventId, lumaUrl, title }) => (
             <div key={lumaEventId} className="workshop-frame paper-card accent-orange">
               {embeds ? (
                 <iframe
                   className="luma-event-embed"
-                  src={embedUrl(lumaEventId)}
+                  src={embedUrl(lumaUrl)}
                   title={title}
                   allowFullScreen
                   aria-hidden="false"
@@ -54,7 +54,7 @@ const Workshops = () => {
               {/* Always available, in case the embed does not load. */}
               <p className="workshop-fallback">
                 Trouble loading the event?{' '}
-                <a href={eventUrl(lumaEventId)} target="_blank" rel="noopener noreferrer">
+                <a href={lumaUrl} target="_blank" rel="noopener noreferrer">
                   Open it on Luma →
                 </a>
               </p>
