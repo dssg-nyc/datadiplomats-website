@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
-import SiteBar from './components/SiteBar';
+import Header from './components/Header';
 import Footer from './components/Footer';
 import Blog from './components/Blog';
 import BlogPost from './components/BlogPost';
@@ -23,7 +23,7 @@ function App() {
   return (
       <div className="App">
         <ScrollToTop />
-        <SiteBar />
+        <Header />
         <Routes>
           <Route path="/" element={<DataDiplomats />} />
           <Route path="/diplomats" element={<ToHome />} />

@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
  *
  * HashRouter owns the URL fragment, so a plain href="#book" is read as a
  * route called "book" and renders an empty page. This goes through the
- * router instead (URL becomes #/page#section) and Header scrolls to the
+ * router instead (URL becomes #/page#section) and ScrollToTop scrolls to the
  * section on arrival. A click on the current page scrolls directly too,
  * since re-clicking the same hash does not change the location.
  */

@@ -1,61 +1,27 @@
 {
-  "missionTitle": "About NYC DSSG",
-  "missionLead": "First and foremost, we are community organizers — with a mission to foster a culture of passionate civic technologists dedicated to creating positive social impact through pro bono consulting and volunteer work.",
-  "missionParagraphs": [
-    "We build cohorts of civic technologists and ethical AI leaders who understand local issues and use technology to provide real solutions in our city — healthy food access, affordable housing, education equity, transportation safety, environmental justice, and public health.",
-    "Founded by the Data Diplomats for Nonprofits (NYC), our volunteer group has grown into a vibrant community of professionals committed to using technology for meaningful social impact."
-  ],
-  "values": [
+  "applyUrl": "https://forms.gle/nKTURDV5PWRRv3Gb9",
+  "sections": [
     {
-      "icon": "🎯",
-      "title": "Mission-Driven",
-      "description": "Every project we undertake directly supports organizations making a difference in our communities."
+      "label": "Ways to volunteer",
+      "id": "ways"
     },
     {
-      "icon": "🤝",
-      "title": "Collaborative",
-      "description": "We believe the best solutions come from diverse perspectives working together toward common goals."
+      "label": "What you’ll learn",
+      "id": "program"
     },
     {
-      "icon": "⚡",
-      "title": "Impact-Focused",
-      "description": "We measure success not just in code deployed, but in lives improved and communities strengthened."
+      "label": "Requirements",
+      "id": "expectations"
     },
     {
-      "icon": "🌱",
-      "title": "Growth-Oriented",
-      "description": "We're committed to continuous learning and helping both volunteers and partners grow their capabilities."
+      "label": "The diplomats",
+      "id": "cohort"
+    },
+    {
+      "label": "Apply",
+      "id": "apply"
     }
   ],
-  "philosophy": {
-    "eyebrow": "Our Philosophy",
-    "title": "Organizing Before Coding",
-    "intro": "Before we write a line of code, we organize. Our approach is grounded in the community-organizing tradition of Dr. Marshall Ganz — a Harvard lecturer and veteran organizer of the United Farm Workers and the 2008 Obama campaign — who teaches that lasting social change is built through relationships, not transactions.",
-    "frameworkName": "The Bicycle Framework",
-    "frameworkDescription": "Ganz likens organizing to riding a bicycle: two wheels turning in sync around a shared center of gravity. We use it to structure every cohort and every nonprofit partnership.",
-    "pillars": [
-      {
-        "name": "Narrative",
-        "wheel": "Front wheel",
-        "description": "Public narrative — telling a Story of Self, a Story of Us, and a Story of Now — turns individual values into shared motivation and a clear call to act."
-      },
-      {
-        "name": "Relationship",
-        "wheel": "Hub",
-        "description": "Grassroots, one-on-one relationship building is the hub holding everything together — the trust that lets diplomats and nonprofit partners commit to hard work together."
-      },
-      {
-        "name": "Strategy",
-        "wheel": "Back wheel",
-        "description": "Strategy turns resources — volunteer time, technical skill, and data — into the power needed to reach a concrete goal for each nonprofit partner."
-      }
-    ],
-    "theoryOfChangeTitle": "Our Theory of Change",
-    "theoryOfChangeDescription": "We treat two problems as one: nonprofits priced out of technical talent, and skilled professionals — often immigrants, career-changers, and job-seekers — priced out of career-building work. Matching trained volunteers with under-resourced nonprofits for pro bono IT, AI, and data consulting builds career-ready professionals on one side and more resilient, tech-enabled nonprofits on the other."
-  },
-  "sectionTitle": "Our Data Diplomats",
-  "entityNote": "Data Diplomats for Nonprofits is a registered 501(c)(3) charity that organizes NYC-DSSG volunteers to deliver pro bono AI strategy and governance for nonprofits. We also have internal Impact Unit that provides AI workshops, training, and consulting for implementing ethical human-centered AI to mission-driven nonprofit organizations.",
-  "applyUrl": "https://forms.gle/nKTURDV5PWRRv3Gb9",
   "cohorts": [
     {
       "id": "cohort-1",
@@ -76,10 +42,10 @@
         {
           "name": "Ursula",
           "image": "/images/ursula_pic.png",
-          "role": "Nonprofit Lead",
+          "role": "Data Scientist",
           "bio": "Ursula is a Brooklyn-based data scientist leading DSSG NYC's nonprofit engagement, researching voter engagement, economic development, and public infrastructure. She began as a lawyer in open data policy, then spent three years on civic projects in Tbilisi, Georgia.",
           "linkedin": "",
-          "motivation": "She started as a lawyer in open-data policy, then spent three years on civic projects in Tbilisi. She keeps returning to one question: who actually gets counted when a city decides something?",
+          "motivation": "She started as a lawyer working on open data policy and spent three years on civic projects in Tbilisi, Georgia.",
           "tint": "orange"
         },
         {

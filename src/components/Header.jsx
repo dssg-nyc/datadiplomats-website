@@ -1,16 +1,19 @@
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
+import SectionLink from './SectionLink';
+import diplomatsData from '../data/diplomats.json';
 import './Header.css';
+
+// The NYC x DSSG header's design, carrying Data Diplomats links only.
 
 // Above this width the full nav bar fits and the hamburger is hidden.
 // Kept in sync with the breakpoint in Header.css.
-const DESKTOP_QUERY = '(min-width: 1001px)';
+const DESKTOP_QUERY = '(min-width: 1281px)';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
 
   const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
@@ -22,18 +25,6 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.substring(1);
-      setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    }
-  }, [location]);
 
   // Any navigation dismisses the panel, including back/forward.
   useEffect(() => {
@@ -83,28 +74,18 @@ const Header = () => {
     return () => query.removeEventListener('change', handleChange);
   }, [closeMenu]);
 
-  const handleAnchorClick = (e, hash) => {
-    e.preventDefault();
-    closeMenu();
-    if (location.pathname !== '/') {
-      navigate(`/${hash}`);
-    } else {
-      navigate(hash);
-    }
-  };
-
   return (
     <>
       <header className={`modern-header ${isScrolled ? 'scrolled' : ''}`}>
         <div className="header-container">
           <div className="logo-section">
-            <a href="/#home" onClick={(e) => handleAnchorClick(e, '#home')} className="logo-link">
+            <Link to="/" className="logo-link">
               <img src="/images/logo3.png" alt="" className="logo-img" />
               <span className="logo-text">
-                <span className="logo-title">NYC-DSSG</span>
-                <span className="logo-subtitle">Data Diplomats</span>
+                <span className="logo-title">Data Diplomats</span>
+                <span className="logo-subtitle">For Nonprofits</span>
               </span>
-            </a>
+            </Link>
           </div>
 
           <button
@@ -125,24 +106,20 @@ const Header = () => {
             className={`nav-menu ${isMenuOpen ? 'is-open' : ''}`}
             aria-label="Main navigation"
           >
-            {/* Left group: the nonprofit path through the site. */}
-            <a href="/#projects" onClick={(e) => handleAnchorClick(e, '#projects')} className="nav-link">
-              For Nonprofits
-            </a>
-            <a href="/#writing" onClick={(e) => handleAnchorClick(e, '#writing')} className="nav-link">
-              Impact Stories
-            </a>
-            <NavLink to="/portfolio" className="nav-link" onClick={closeMenu}>
-              Our Work
-            </NavLink>
-            <NavLink to="/events" className="nav-link" onClick={closeMenu}>
-              Events
-            </NavLink>
+            {/* Left group: sections of the program page. */}
+            {diplomatsData.sections.map(({ id, label }) => (
+              <SectionLink key={id} section={id} className="nav-link" onClick={closeMenu}>
+                {label}
+              </SectionLink>
+            ))}
 
-            {/* Right group: the volunteer path, set apart so it reads as its own track. */}
+            {/* Right group: the other pages, set apart so they read as their own track. */}
             <span className="nav-divider" aria-hidden="true" />
-            <NavLink to="/diplomats" className="nav-link nav-link-program" onClick={closeMenu}>
-              Data Diplomats
+            <NavLink to="/portfolio" className="nav-link" onClick={closeMenu}>
+              Our work
+            </NavLink>
+            <NavLink to="/blog" className="nav-link" onClick={closeMenu}>
+              Blog
             </NavLink>
             <a
               href="https://givebutter.com/aiforgood"
