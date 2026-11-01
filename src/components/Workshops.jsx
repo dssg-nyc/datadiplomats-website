@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import Seo from './Seo';
 import PageIntro from './PageIntro';
@@ -13,19 +14,12 @@ const embedsAllowed = (preferences) => (preferences || defaultPreferences()).emb
 // registration); the full event page sends X-Frame-Options: sameorigin.
 const embedUrl = (id) => `https://luma.com/embed/event/${id}/simple`;
 
-const REGISTER_ID = 'workshop-register';
-
-// HashRouter owns the URL fragment, so scroll to the card directly.
-const scrollToRegister = () => {
-  document.getElementById(REGISTER_ID)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-};
-
 // The build-up plays once on load: pain-point cards pop in one by one,
 // connectors draw down to the burnout node, then the workshop appears as the fix.
 // Each piece reads its place in the sequence from the --i custom property.
 const step = (index) => ({ '--i': index });
 
-const Landing = () => {
+const Landing = ({ lumaUrl }) => {
   const painCount = landing.pains.length;
 
   return (
@@ -61,9 +55,9 @@ const Landing = () => {
         <p className="wl-node-label">{landing.solution.label}</p>
         <h3 className="wl-node-title">{landing.solution.title}</h3>
         <p>{landing.solution.body}</p>
-        <button type="button" className="button accent" onClick={scrollToRegister}>
-          {landing.solution.cta}
-        </button>
+        <a className="button accent" href={lumaUrl} target="_blank" rel="noopener noreferrer">
+          {landing.solution.cta} →
+        </a>
       </div>
 
       <p className="wl-source">
@@ -77,8 +71,12 @@ const Landing = () => {
   );
 };
 
+Landing.propTypes = {
+  lumaUrl: PropTypes.string.isRequired,
+};
+
 const Register = ({ event, embeds }) => (
-  <aside id={REGISTER_ID} className="workshop-register paper-card accent-orange">
+  <aside className="workshop-register paper-card accent-orange">
     {embeds ? (
       <iframe
         className="luma-event-embed"
@@ -106,6 +104,15 @@ const Register = ({ event, embeds }) => (
   </aside>
 );
 
+Register.propTypes = {
+  event: PropTypes.shape({
+    lumaEventId: PropTypes.string.isRequired,
+    lumaUrl: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+  embeds: PropTypes.bool.isRequired,
+};
+
 const Workshops = () => {
   const [embeds, setEmbeds] = useState(() => embedsAllowed(readConsent()));
 
@@ -128,7 +135,7 @@ const Workshops = () => {
         <div className="workshops-wrap">
           {workshopData.events.map((event) => (
             <article key={event.lumaEventId} className="workshop">
-              <Landing />
+              <Landing lumaUrl={event.lumaUrl} />
               <Register event={event} embeds={embeds} />
             </article>
           ))}
