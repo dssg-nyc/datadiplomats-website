@@ -5,107 +5,105 @@ import workshopData from '../data/workshops.json';
 import { defaultPreferences, openCookieSettings, readConsent, subscribeConsent } from '../consent/consent';
 import './Workshops.css';
 
+const { landing } = workshopData;
+
 const embedsAllowed = (preferences) => (preferences || defaultPreferences()).embeds;
 
 // Luma lets other sites frame only its compact event card (tickets and
-// registration). The full event page sends X-Frame-Options: sameorigin, so
-// the description is shown as text from workshops.json beside the card.
+// registration); the full event page sends X-Frame-Options: sameorigin.
 const embedUrl = (id) => `https://luma.com/embed/event/${id}/simple`;
 
-const formatWhen = ({ startAt, durationMinutes, timeZone }) => {
-  const start = new Date(startAt);
-  const date = new Intl.DateTimeFormat('en-US', {
-    timeZone,
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  }).format(start);
-  const time = (value, zone) =>
-    new Intl.DateTimeFormat('en-US', {
-      timeZone,
-      hour: 'numeric',
-      minute: '2-digit',
-      ...(zone && { timeZoneName: 'short' }),
-    }).format(value);
-  const end = new Date(start.getTime() + durationMinutes * 60000);
-  return `${date}, ${time(start)} – ${time(end, true)}`;
+const REGISTER_ID = 'workshop-register';
+
+// HashRouter owns the URL fragment, so scroll to the card directly.
+const scrollToRegister = () => {
+  document.getElementById(REGISTER_ID)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
-const Workshop = ({ event, embeds }) => (
-  <article className="workshop">
-    <aside className="workshop-register paper-card accent-orange">
-      {embeds ? (
-        <iframe
-          className="luma-event-embed"
-          src={embedUrl(event.lumaEventId)}
-          title={`Register: ${event.title}`}
-          allowFullScreen
-          aria-hidden="false"
-          tabIndex={0}
-        />
-      ) : (
-        <div className="workshop-blocked">
-          <p>Registration is hidden because embedded content is turned off in your privacy choices.</p>
-          <button type="button" className="button accent" onClick={openCookieSettings}>
-            Change cookie settings
-          </button>
-        </div>
-      )}
-      {/* Always available, in case the embed does not load. */}
-      <p className="workshop-fallback">
-        Trouble loading registration?{' '}
-        <a href={event.lumaUrl} target="_blank" rel="noopener noreferrer">
-          Open it on Luma →
+// The build-up plays once on load: pain-point cards pop in one by one,
+// connectors draw down to the burnout node, then the workshop appears as the fix.
+// Each piece reads its place in the sequence from the --i custom property.
+const step = (index) => ({ '--i': index });
+
+const Landing = () => {
+  const painCount = landing.pains.length;
+
+  return (
+    <div className="workshop-landing paper-card">
+      <p className="eyebrow">{landing.eyebrow}</p>
+      <h2 className="display-heading wl-title">
+        {landing.title} <em>{landing.titleEmphasis}</em>
+      </h2>
+      <p className="wl-lead">{landing.lead}</p>
+
+      <ol className="wl-pains">
+        {landing.pains.map((pain, index) => (
+          <li key={pain.title} className="wl-pain" style={step(index)}>
+            <span className="wl-dot" aria-hidden="true" />
+            <h3 className="wl-pain-title">{pain.title}</h3>
+            <p className="wl-pain-text">{pain.pain}</p>
+            <p className="wl-pain-fix">{pain.fix}</p>
+          </li>
+        ))}
+      </ol>
+
+      <div className="wl-flow" style={step(painCount)} aria-hidden="true" />
+
+      <div className="wl-burnout" style={step(painCount + 1)}>
+        <p className="wl-node-label">{landing.burnout.label}</p>
+        <h3 className="wl-node-title">{landing.burnout.title}</h3>
+        <p className="wl-stat">{landing.burnout.stat}</p>
+      </div>
+
+      <div className="wl-flow wl-flow-fix" style={step(painCount + 2)} aria-hidden="true" />
+
+      <div className="wl-solution" style={step(painCount + 3)}>
+        <p className="wl-node-label">{landing.solution.label}</p>
+        <h3 className="wl-node-title">{landing.solution.title}</h3>
+        <p>{landing.solution.body}</p>
+        <button type="button" className="button accent" onClick={scrollToRegister}>
+          {landing.solution.cta}
+        </button>
+      </div>
+
+      <p className="wl-source">
+        Source:{' '}
+        <a href={landing.burnout.sourceUrl} target="_blank" rel="noopener noreferrer">
+          {landing.burnout.sourceLabel}
         </a>
+        . The survey covers foundation-funded organizations, so it may not represent the whole sector.
       </p>
-    </aside>
-
-    <div className="workshop-details paper-card">
-      <h2 className="display-heading workshop-title">{event.title}</h2>
-      <ul className="workshop-facts">
-        <li><strong>When</strong> {formatWhen(event)}</li>
-        <li><strong>Where</strong> {event.format}</li>
-        <li><strong>Price</strong> {event.price}</li>
-      </ul>
-      <p className="workshop-summary">{event.summary}</p>
-
-      <section>
-        <h3 className="workshop-subhead">Schedule</h3>
-        <ul className="workshop-list">
-          {event.schedule.map((item) => <li key={item}>{item}</li>)}
-        </ul>
-      </section>
-
-      <section>
-        <h3 className="workshop-subhead">What we will build</h3>
-        <ol className="workshop-builds">
-          {event.builds.map((build) => (
-            <li key={build.title}>
-              <strong>{build.title}.</strong> {build.detail}
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section>
-        <h3 className="workshop-subhead">Who this is for</h3>
-        <p>{event.audience}</p>
-      </section>
-
-      <section>
-        <h3 className="workshop-subhead">Before you come</h3>
-        <p>{event.prerequisites}</p>
-      </section>
-
-      <section>
-        <h3 className="workshop-subhead">What to bring</h3>
-        <ul className="workshop-list">
-          {event.bring.map((item) => <li key={item}>{item}</li>)}
-        </ul>
-      </section>
     </div>
-  </article>
+  );
+};
+
+const Register = ({ event, embeds }) => (
+  <aside id={REGISTER_ID} className="workshop-register paper-card accent-orange">
+    {embeds ? (
+      <iframe
+        className="luma-event-embed"
+        src={embedUrl(event.lumaEventId)}
+        title={`Register: ${event.title}`}
+        allowFullScreen
+        aria-hidden="false"
+        tabIndex={0}
+      />
+    ) : (
+      <div className="workshop-blocked">
+        <p>Registration is hidden because embedded content is turned off in your privacy choices.</p>
+        <button type="button" className="button accent" onClick={openCookieSettings}>
+          Change cookie settings
+        </button>
+      </div>
+    )}
+    {/* Always available, in case the embed does not load. */}
+    <p className="workshop-fallback">
+      Trouble loading registration?{' '}
+      <a href={event.lumaUrl} target="_blank" rel="noopener noreferrer">
+        Open it on Luma →
+      </a>
+    </p>
+  </aside>
 );
 
 const Workshops = () => {
@@ -116,8 +114,8 @@ const Workshops = () => {
   return (
     <div className="workshops-page">
       <Seo
-        title="AI Workshops - Data Diplomats"
-        description="Hands-on AI workshops for nonprofits from Data Diplomats. Practice prompting and build workflows you can run at your organization."
+        title="AI Workshops for Nonprofits - Data Diplomats"
+        description="AI training and workshops for nonprofits: use AI for grant writing, volunteer management, fundraising campaigns and social services, and give your executive director their time back."
         type="website"
         name="AI Workshops"
       />
@@ -129,7 +127,10 @@ const Workshops = () => {
       <section className="workshops-list">
         <div className="workshops-wrap">
           {workshopData.events.map((event) => (
-            <Workshop key={event.lumaEventId} event={event} embeds={embeds} />
+            <article key={event.lumaEventId} className="workshop">
+              <Landing />
+              <Register event={event} embeds={embeds} />
+            </article>
           ))}
         </div>
       </section>

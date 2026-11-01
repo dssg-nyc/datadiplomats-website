@@ -1,4 +1,4 @@
-/* AI Workshops: the event description beside Luma's registration card. */
+/* AI Workshops: an animated landing page beside Luma's registration card. */
 
 .workshops-page {
   background: var(--paper);
@@ -21,7 +21,7 @@ section.workshops-list {
   gap: var(--space-2xl);
 }
 
-/* Description on the left, registration card on the right. */
+/* Landing on the left, registration card on the right. */
 .workshop {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
@@ -29,13 +29,10 @@ section.workshops-list {
   align-items: start;
 }
 
-.workshop-details {
+.workshop-landing {
   grid-column: 1;
   grid-row: 1;
   padding: var(--space-xl);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
 }
 
 .workshop-register {
@@ -45,6 +42,7 @@ section.workshops-list {
   overflow: hidden;
   position: sticky;
   top: calc(80px + var(--space-sm));
+  scroll-margin-top: calc(80px + var(--space-sm));
 }
 
 .luma-event-embed {
@@ -54,44 +52,6 @@ section.workshops-list {
   border: 0;
   border-radius: var(--radius-md);
   background: white;
-}
-
-.workshop-title {
-  margin: 0;
-}
-
-.workshop-facts {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  color: var(--gray-700);
-}
-
-.workshop-facts strong {
-  display: inline-block;
-  min-width: 4.5rem;
-  color: var(--primary-blue);
-}
-
-.workshop-details p {
-  margin: 0;
-}
-
-.workshop-subhead {
-  margin: 0 0 var(--space-xs);
-  color: var(--primary-blue);
-}
-
-.workshop-list,
-.workshop-builds {
-  margin: 0;
-  padding-left: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
 }
 
 .workshop-blocked {
@@ -119,14 +79,253 @@ section.workshops-list {
   font-weight: 600;
 }
 
+/* ---------- Landing ---------- */
+
+.wl-title {
+  margin: 0 0 var(--space-sm);
+}
+
+.wl-lead {
+  margin: 0 0 var(--space-lg);
+  font-size: 1.125rem;
+  color: var(--gray-700);
+}
+
+.wl-pains {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+}
+
+.wl-pain {
+  position: relative;
+  padding: var(--space-md);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+}
+
+/* The orange node on each card, like the joints in the org chart. */
+.wl-dot {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary-orange);
+}
+
+.wl-pain-title {
+  margin: 0 0 0.35rem;
+  color: var(--primary-blue);
+  font-size: 1.05rem;
+}
+
+.wl-pain-text {
+  margin: 0 0 var(--space-xs);
+  color: var(--gray-700);
+  font-size: 0.95rem;
+}
+
+.wl-pain-fix {
+  margin: 0;
+  padding-top: var(--space-xs);
+  border-top: 1px dashed var(--surface-border);
+  color: var(--accent-green);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Connector between stages: a line that draws downward, ending in a dot. */
+.wl-flow {
+  position: relative;
+  width: 2px;
+  height: 44px;
+  margin: 0 auto;
+}
+
+.wl-flow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--primary-blue);
+  transform-origin: top;
+}
+
+.wl-flow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  border-radius: 50%;
+  background: var(--primary-orange);
+}
+
+.wl-flow-fix::before {
+  background: var(--accent-orange);
+}
+
+.wl-burnout,
+.wl-solution {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.wl-burnout {
+  background: var(--primary-blue);
+  color: white;
+}
+
+.wl-solution {
+  background: #fdeedd;
+  border: 1px solid var(--accent-sand);
+  color: var(--ink);
+}
+
+.wl-node-label {
+  margin: 0 0 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.wl-burnout .wl-node-label {
+  color: var(--accent-sand);
+}
+
+.wl-solution .wl-node-label {
+  color: var(--accent-orange);
+}
+
+.wl-node-title {
+  margin: 0 0 var(--space-xs);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+}
+
+.wl-burnout .wl-node-title {
+  color: white;
+}
+
+.wl-solution .wl-node-title {
+  color: var(--primary-blue);
+}
+
+.wl-stat {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.wl-solution p {
+  margin: 0 0 var(--space-md);
+}
+
+.wl-source {
+  margin: var(--space-lg) 0 0;
+  font-size: 0.8125rem;
+  color: var(--gray-600);
+}
+
+.wl-source a {
+  color: var(--primary-blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ---------- Animation: plays once on load ----------
+   Each piece starts at --i steps into the sequence: cards, then the first
+   connector, the burnout node, the second connector and the fix. */
+
+.wl-pain,
+.wl-burnout,
+.wl-solution {
+  animation: wl-pop 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(0.25s + var(--i) * 0.45s);
+}
+
+.wl-flow::before {
+  animation: wl-draw 0.45s ease-out both;
+  animation-delay: calc(0.25s + var(--i) * 0.45s);
+}
+
+.wl-flow::after {
+  animation: wl-pop 0.3s ease-out both;
+  animation-delay: calc(0.7s + var(--i) * 0.45s);
+}
+
+.wl-dot {
+  animation: wl-pulse 2.4s ease-in-out infinite;
+  animation-delay: calc(0.85s + var(--i) * 0.45s);
+}
+
+.wl-burnout {
+  box-shadow: 0 0 0 0 rgba(244, 126, 45, 0.5);
+  animation: wl-pop 0.6s cubic-bezier(0.16, 1, 0.3, 1) both,
+    wl-ring 2.4s ease-out 1s infinite;
+  animation-delay: calc(0.25s + var(--i) * 0.45s), calc(0.9s + var(--i) * 0.45s);
+}
+
+@keyframes wl-pop {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wl-draw {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes wl-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(244, 126, 45, 0.55);
+  }
+
+  50% {
+    box-shadow: 0 0 0 7px rgba(244, 126, 45, 0);
+  }
+}
+
+@keyframes wl-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(244, 126, 45, 0.45);
+  }
+
+  70%,
+  100% {
+    box-shadow: 0 0 0 16px rgba(244, 126, 45, 0);
+  }
+}
+
 /* Below this width the card goes first, so registration is not buried. */
 @media (max-width: 960px) {
   .workshop {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .workshop-register,
-  .workshop-details {
+  .workshop-landing,
+  .workshop-register {
     grid-column: 1;
   }
 
@@ -135,7 +334,7 @@ section.workshops-list {
     position: static;
   }
 
-  .workshop-details {
+  .workshop-landing {
     grid-row: 2;
   }
 }
@@ -145,7 +344,25 @@ section.workshops-list {
     padding: 0 var(--space-sm);
   }
 
-  .workshop-details {
+  .workshop-landing {
     padding: var(--space-lg) var(--space-md);
+  }
+}
+
+@media (max-width: 560px) {
+  .wl-pains {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* No motion: show the finished page straight away. */
+@media (prefers-reduced-motion: reduce) {
+  .wl-pain,
+  .wl-burnout,
+  .wl-solution,
+  .wl-flow::before,
+  .wl-flow::after,
+  .wl-dot {
+    animation: none;
   }
 }
