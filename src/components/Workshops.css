@@ -42,7 +42,6 @@ section.workshops-list {
   overflow: hidden;
   position: sticky;
   top: calc(80px + var(--space-sm));
-  scroll-margin-top: calc(80px + var(--space-sm));
 }
 
 .luma-event-embed {
