@@ -38,10 +38,13 @@ export const readConsent = () => {
   return null;
 };
 
-const pushDataLayer = (...args) => {
+// Google Tag Manager and gtag.js only act on commands pushed as the
+// `arguments` object, as gtag() does. A plain array is ignored, which would
+// leave consent stuck on its denied default after a visitor accepts.
+function pushDataLayer() {
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push(args);
-};
+  window.dataLayer.push(arguments);
+}
 
 export const toConsentMode = (preferences) => {
   const flag = (granted) => (granted ? 'granted' : 'denied');
