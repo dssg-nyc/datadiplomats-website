@@ -24,19 +24,22 @@
         wait_for_update: 500
       });
     </script>
-    <!-- Google Tag Manager. Loads after the Consent Mode defaults above, so
-         tags honour the visitor's cookie choices. -->
+    <!-- Google Ads conversion tracking. The Google tag itself loads only
+         after the visitor grants analytics or advertising cookies
+         (src/consent/consent.js, tag id from VITE_GOOGLE_TAG_ID at build
+         time). This listener fires the Apply conversion when a visitor
+         clicks through to the application or volunteer Google Form; events
+         queue in dataLayer until the consent-gated tag loads. -->
     <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-KPJQTL9N");
+      document.addEventListener('click', function (event) {
+        var link = event.target.closest && event.target.closest('a[href]');
+        if (!link || typeof window.gtag !== 'function') return;
+        if (/forms\.gle|docs\.google\.com\/forms/.test(link.href)) {
+          window.gtag('event', 'conversion', {
+            send_to: 'AW-18527015092/6xsTCJuR-7IdELShr4JF',
+          });
+        }
+      });
     </script>
   </head>
   <body>
