@@ -37,6 +37,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_GOOGLE_TAG_ID: AW-18527015092
 
       - name: Add CNAME to dist
         run: |
