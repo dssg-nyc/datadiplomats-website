@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Seo from './Seo';
 import PageIntro from './PageIntro';
 import workshopData from '../data/workshops.json';
 import { defaultPreferences, openCookieSettings, readConsent, subscribeConsent } from '../consent/consent';
+import { recordLumaPurchase } from '../tracking/lumaPurchase';
 import './Workshops.css';
 
 const { landing } = workshopData;
@@ -75,34 +76,49 @@ Landing.propTypes = {
   lumaUrl: PropTypes.string.isRequired,
 };
 
-const Register = ({ event, embeds }) => (
-  <aside className="workshop-register paper-card accent-orange">
-    {embeds ? (
-      <iframe
-        className="luma-event-embed"
-        src={embedUrl(event.lumaEventId)}
-        title={`Register: ${event.title}`}
-        allowFullScreen
-        aria-hidden="false"
-        tabIndex={0}
-      />
-    ) : (
-      <div className="workshop-blocked">
-        <p>Registration is hidden because embedded content is turned off in your privacy choices.</p>
-        <button type="button" className="button accent" onClick={openCookieSettings}>
-          Change cookie settings
-        </button>
-      </div>
-    )}
-    {/* Always available, in case the embed does not load. */}
-    <p className="workshop-fallback">
-      Trouble loading registration?{' '}
-      <a href={event.lumaUrl} target="_blank" rel="noopener noreferrer">
-        Open it on Luma →
-      </a>
-    </p>
-  </aside>
-);
+const Register = ({ event, embeds }) => {
+  const frame = useRef(null);
+  useEffect(() => {
+    if (!embeds) return undefined;
+    const onPurchase = (message) => recordLumaPurchase(message, {
+      frameWindow: frame.current?.contentWindow,
+      consent: readConsent(),
+      gtag: window.gtag,
+    });
+    window.addEventListener('message', onPurchase);
+    return () => window.removeEventListener('message', onPurchase);
+  }, [embeds]);
+
+  return (
+    <aside className="workshop-register paper-card accent-orange">
+      {embeds ? (
+        <iframe
+          ref={frame}
+          className="luma-event-embed"
+          src={embedUrl(event.lumaEventId)}
+          title={`Register: ${event.title}`}
+          allowFullScreen
+          aria-hidden="false"
+          tabIndex={0}
+        />
+      ) : (
+        <div className="workshop-blocked">
+          <p>Registration is hidden because embedded content is turned off in your privacy choices.</p>
+          <button type="button" className="button accent" onClick={openCookieSettings}>
+            Change cookie settings
+          </button>
+        </div>
+      )}
+      {/* Always available, in case the embed does not load. */}
+      <p className="workshop-fallback">
+        Trouble loading registration?{' '}
+        <a href={event.lumaUrl} target="_blank" rel="noopener noreferrer">
+          Open it on Luma →
+        </a>
+      </p>
+    </aside>
+  );
+};
 
 Register.propTypes = {
   event: PropTypes.shape({
