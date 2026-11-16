@@ -1,7 +1,9 @@
 import './Partner.css';
 import Seo from './Seo';
 import PageIntro from './PageIntro';
+import LogoCloud from './LogoCloud';
 import siteProperties from '../data/siteproperties.json';
+import partnerLogos from '../data/partnerlogos.json';
 
 const EMAIL = 'mailto:dssgnyc@gmail.com';
 const MEMBERSHIP_URL = 'https://givebutter.com/data-diplomats-annual-membership-draft-hostn6';
@@ -72,6 +74,17 @@ const Partner = () => (
             </article>
           ))}
         </div>
+      </div>
+    </section>
+
+    <section className="partner-section" aria-labelledby="partner-members-title">
+      <div className="partner-wrap">
+        <div>
+          <p className="eyebrow">Our community</p>
+          <h2 className="display-heading" id="partner-members-title">Members and event collaborators</h2>
+        </div>
+        <LogoCloud title="Our members" logos={partnerLogos.members} />
+        <LogoCloud title="Event collaborators" logos={partnerLogos.eventCollaborators} />
       </div>
     </section>
 
