@@ -19,13 +19,16 @@ const OUR_WORK_LINKS = [
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isWorkOpen, setIsWorkOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const isWorkOpen = openDropdown === 'work';
+  const isProgramOpen = openDropdown === 'program';
   const workRef = useRef(null);
+  const programRef = useRef(null);
   const location = useLocation();
 
   const closeMenu = useCallback(() => {
     setIsMenuOpen(false);
-    setIsWorkOpen(false);
+    setOpenDropdown(null);
   }, []);
 
   const isWorkActive = OUR_WORK_LINKS.some(({ to }) => location.pathname === to);
@@ -75,18 +78,19 @@ const Header = () => {
 
   // The Our work dropdown also opens on hover (CSS); this handles click, tap and keyboard.
   useEffect(() => {
-    if (!isWorkOpen) {
+    if (!openDropdown) {
       return undefined;
     }
 
+    const activeRef = openDropdown === 'program' ? programRef : workRef;
     const handlePointer = (event) => {
-      if (!workRef.current?.contains(event.target)) {
-        setIsWorkOpen(false);
+      if (!activeRef.current?.contains(event.target)) {
+        setOpenDropdown(null);
       }
     };
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
-        setIsWorkOpen(false);
+        setOpenDropdown(null);
       }
     };
 
@@ -96,7 +100,7 @@ const Header = () => {
       document.removeEventListener('mousedown', handlePointer);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isWorkOpen]);
+  }, [openDropdown]);
 
   // Widening to desktop hides the toggle — close so the scroll lock lifts with it.
   useEffect(() => {
@@ -144,12 +148,28 @@ const Header = () => {
             className={`nav-menu ${isMenuOpen ? 'is-open' : ''}`}
             aria-label="Main navigation"
           >
-            {/* Left group: sections of the program page. */}
-            {diplomatsData.sections.map(({ id, label }) => (
-              <SectionLink key={id} section={id} className="nav-link" onClick={closeMenu}>
-                {label}
-              </SectionLink>
-            ))}
+            {/* Left group: the cohort program's sections, under Social entrepreneurship. */}
+            <div className={`nav-dropdown ${isProgramOpen ? 'is-open' : ''}`} ref={programRef}>
+              <button
+                type="button"
+                className={`nav-link nav-dropdown-toggle ${location.pathname === '/' ? 'active' : ''}`}
+                aria-expanded={isProgramOpen}
+                aria-controls="social-entrepreneurship-menu"
+                onClick={() => setOpenDropdown((open) => (open === 'program' ? null : 'program'))}
+              >
+                Social entrepreneurship
+              </button>
+              <div id="social-entrepreneurship-menu" className="nav-dropdown-menu">
+                {diplomatsData.sections.map(({ id, label }) => (
+                  <SectionLink key={id} section={id} className="nav-link nav-dropdown-link" onClick={closeMenu}>
+                    {label}
+                  </SectionLink>
+                ))}
+              </div>
+            </div>
+            <NavLink to="/partner" className="nav-link" onClick={closeMenu}>
+              Partnerships
+            </NavLink>
 
             {/* Right group: the other pages, set apart so they read as their own track. */}
             <span className="nav-divider" aria-hidden="true" />
@@ -159,7 +179,7 @@ const Header = () => {
                 className={`nav-link nav-dropdown-toggle ${isWorkActive ? 'active' : ''}`}
                 aria-expanded={isWorkOpen}
                 aria-controls="our-work-menu"
-                onClick={() => setIsWorkOpen((open) => !open)}
+                onClick={() => setOpenDropdown((open) => (open === 'work' ? null : 'work'))}
               >
                 Our work
               </button>
