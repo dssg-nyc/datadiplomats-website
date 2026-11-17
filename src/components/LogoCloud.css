@@ -19,6 +19,20 @@
   text-align: center;
 }
 
+/* Two ribbons side by side on wide screens, stacked on narrow ones. */
+.partner-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg);
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .partner-logo-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* Continuous ticker, after code-crew.org's Supporters ribbon. */
 .logo-ribbon {
   overflow: hidden;
@@ -29,10 +43,14 @@
 .logo-ribbon-track {
   display: flex;
   align-items: center;
-  gap: var(--space-2xl, 3rem);
   width: max-content;
-  padding-right: var(--space-2xl, 3rem);
   animation: logo-ribbon-scroll 40s linear infinite;
+}
+
+/* Spacing lives on the items (not flex gap/padding) so half the track width
+   is exactly one loop unit and the -50% loop point is seamless. */
+.logo-ribbon-track .logo-cloud-item {
+  margin-right: var(--space-2xl, 3rem);
 }
 
 .logo-ribbon:hover .logo-ribbon-track,

@@ -83,8 +83,10 @@ const Partner = () => (
           <p className="eyebrow">Our community</p>
           <h2 className="display-heading" id="partner-members-title">Members and event collaborators</h2>
         </div>
-        <LogoCloud title="Our members" logos={partnerLogos.members} />
-        <LogoCloud title="Event collaborators" logos={partnerLogos.eventCollaborators} />
+        <div className="partner-logo-grid">
+          <LogoCloud title="Our members" logos={partnerLogos.members} />
+          <LogoCloud title="Event collaborators" logos={partnerLogos.eventCollaborators} />
+        </div>
       </div>
     </section>
 
