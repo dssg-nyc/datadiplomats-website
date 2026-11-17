@@ -1232,3 +1232,22 @@
     transform: none;
   }
 }
+
+/* ---------- Members + event collaborators (after hero, before at-a-glance) ---------- */
+
+.dd-partner-logos {
+  padding: 0 0 var(--space-xl);
+}
+
+.dd-partner-logos-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .dd-partner-logos-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -2,8 +2,10 @@ import PropTypes from 'prop-types';
 import './DataDiplomats.css';
 import diplomatsData from '../data/diplomats.json';
 import siteProperties from '../data/siteproperties.json';
+import partnerLogos from '../data/partnerlogos.json';
 import Seo from './Seo';
 import SectionLink from './SectionLink';
+import LogoCloud from './LogoCloud';
 
 const APPLY_URL = diplomatsData.applyUrl;
 const VOLUNTEER_FORM_URL = siteProperties.volunteerFormUrl;
@@ -356,6 +358,14 @@ const DataDiplomats = () => {
               <figcaption>The community at the NYC NourishAI Hackathon</figcaption>
             </figure>
           </div>
+        </div>
+      </section>
+
+      {/* MEMBERS + EVENT COLLABORATORS — right after the hero photo, per Jian. */}
+      <section className="dd-section dd-partner-logos" aria-label="Our members and event collaborators">
+        <div className="dd-wrap dd-partner-logos-inner">
+          <LogoCloud title="Our members" logos={partnerLogos.members} />
+          <LogoCloud title="Event collaborators" logos={partnerLogos.eventCollaborators} />
         </div>
       </section>
 
