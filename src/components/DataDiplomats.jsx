@@ -312,8 +312,8 @@ const DataDiplomats = () => {
               </span>
             </h1>
             <p className="dd-hero-sub">
-              We foster builders and leaders in the AI age. Join us in launching a movement that
-              leads with empathy and engineering next generation socially responsible AI
+              We foster builders and leaders in the AI age. Join the movement to launch next
+              generation of community-driven tech leaders and building socially responsible AI
             </p>
             <div className="dd-cta-row">
               <a className="button accent" href={APPLY_URL} target="_blank" rel="noopener noreferrer">
