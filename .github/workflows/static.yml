@@ -39,6 +39,10 @@ jobs:
         run: npm run build
         env:
           VITE_GOOGLE_TAG_ID: AW-18527015092
+          # GA4 web property "Data Diplomats" for www.datadiplomats.org.
+          # Not a secret: the ID ships in the built page source, same as the
+          # Ads tag above. Analytics still runs only for consenting visitors.
+          VITE_GA_MEASUREMENT_ID: G-BVKW3V2GJ9
 
       - name: Add CNAME to dist
         run: |
