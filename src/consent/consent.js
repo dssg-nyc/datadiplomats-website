@@ -63,18 +63,22 @@ export const toConsentMode = (preferences) => {
   };
 };
 
+// Loads the gtag.js library once, using whichever tag ID is available for
+// the script URL. The library alone collects nothing; each property starts
+// sending only when its own `config` is pushed below, and those pushes are
+// consent-gated separately.
 const loadGoogleTag = () => {
-  if (!GOOGLE_TAG_ID || document.getElementById('google-tag-script')) {
+  const anyId = GOOGLE_TAG_ID || GA_MEASUREMENT_ID;
+  if (!anyId || document.getElementById('google-tag-script')) {
     return;
   }
 
   const script = document.createElement('script');
   script.id = 'google-tag-script';
   script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GOOGLE_TAG_ID)}`;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(anyId)}`;
   document.head.appendChild(script);
   pushDataLayer('js', new Date());
-  pushDataLayer('config', GOOGLE_TAG_ID);
 };
 
 const applyConsentMode = (preferences) => {
@@ -82,13 +86,20 @@ const applyConsentMode = (preferences) => {
   if (preferences.analytics || preferences.advertising) {
     loadGoogleTag();
   }
+  // Each property is configured only under its own consent: Ads measurement
+  // needs advertising, GA4 needs analytics. A visitor who allows analytics
+  // but not advertising gets no Ads config and no advertising hits.
+  if (preferences.advertising && GOOGLE_TAG_ID) {
+    pushDataLayer('config', GOOGLE_TAG_ID);
+  }
   // GA4 collects only after analytics consent; the consent update above
   // lands first, so page views never fire while analytics_storage is denied.
-  // Route changes are SPA navigations: GA4's enhanced measurement (on by
-  // default) picks them up from history events.
+  // send_page_view is false: src/tracking/PageViews.jsx sends page views
+  // itself on every route change, so SPA navigation is measured regardless
+  // of the property's enhanced-measurement settings and never double-counts
+  // the landing page.
   if (preferences.analytics && GA_MEASUREMENT_ID) {
-    loadGoogleTag();
-    pushDataLayer('config', GA_MEASUREMENT_ID);
+    pushDataLayer('config', GA_MEASUREMENT_ID, { send_page_view: false });
   }
 };
 
