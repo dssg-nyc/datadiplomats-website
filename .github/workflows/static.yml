@@ -39,6 +39,9 @@ jobs:
         run: npm run build
         env:
           VITE_GOOGLE_TAG_ID: AW-18527015092
+          # GA4 property ID (G-...), set in repo Settings > Variables as GA_MEASUREMENT_ID.
+          # Empty means no analytics runs; enabling it needs no code change.
+          VITE_GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID }}
 
       - name: Add CNAME to dist
         run: |

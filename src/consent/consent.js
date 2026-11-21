@@ -3,6 +3,10 @@ export const CONSENT_CHANGE_EVENT = 'dssg-consent-change';
 export const OPEN_CONSENT_EVENT = 'dssg-open-consent-settings';
 
 const GOOGLE_TAG_ID = import.meta.env.VITE_GOOGLE_TAG_ID;
+// GA4 property for user-behavior analytics. Build-time value; when unset
+// the site runs no analytics. Separate from the Ads tag so a visitor who
+// allows analytics but not advertising is measured without ad storage.
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
 export const defaultPreferences = () => ({
   embeds: true,
@@ -77,6 +81,14 @@ const applyConsentMode = (preferences) => {
   pushDataLayer('consent', 'update', toConsentMode(preferences));
   if (preferences.analytics || preferences.advertising) {
     loadGoogleTag();
+  }
+  // GA4 collects only after analytics consent; the consent update above
+  // lands first, so page views never fire while analytics_storage is denied.
+  // Route changes are SPA navigations: GA4's enhanced measurement (on by
+  // default) picks them up from history events.
+  if (preferences.analytics && GA_MEASUREMENT_ID) {
+    loadGoogleTag();
+    pushDataLayer('config', GA_MEASUREMENT_ID);
   }
 };
 
