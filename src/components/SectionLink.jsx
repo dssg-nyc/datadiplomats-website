@@ -4,10 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 /**
  * Link to a section by id, optionally on another page.
  *
- * HashRouter owns the URL fragment, so a plain href="#book" is read as a
- * route called "book" and renders an empty page. This goes through the
- * router instead (URL becomes #/page#section) and ScrollToTop scrolls to the
- * section on arrival. A click on the current page scrolls directly too,
+ * Section links go through the router (Link with a hash), so the URL
+ * becomes /page#section and ScrollToTop scrolls to the section on arrival. A click on the current page scrolls directly too,
  * since re-clicking the same hash does not change the location.
  */
 const SectionLink = ({ section, page = '/', onClick, ...rest }) => {

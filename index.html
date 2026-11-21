@@ -7,9 +7,50 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192.png" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:image" content="images/nyc_landing.jpg" />
     <title>Data Diplomats Program</title>
     <meta name="description" content="A leadership and human-centered AI program for people who want to build something for their community. Open to all career backgrounds." />
+    <link rel="canonical" href="https://www.datadiplomats.org/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Data Diplomats for Nonprofits" />
+    <meta property="og:title" content="Data Diplomats Program" />
+    <meta property="og:description" content="A leadership and human-centered AI program for people who want to build something for their community. Open to all career backgrounds." />
+    <meta property="og:url" content="https://www.datadiplomats.org/" />
+    <meta property="og:image" content="https://www.datadiplomats.org/images/nyc_landing.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Data Diplomats Program" />
+    <meta name="twitter:description" content="A leadership and human-centered AI program for people who want to build something for their community. Open to all career backgrounds." />
+    <meta name="twitter:image" content="https://www.datadiplomats.org/images/nyc_landing.jpg" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "Data Diplomats for Nonprofits",
+      "url": "https://www.datadiplomats.org/",
+      "logo": "https://www.datadiplomats.org/images/icon-192.png",
+      "description": "A leadership and human-centered AI program for people who want to build something for their community. Open to all career backgrounds."
+    }
+    </script>
+    <script>
+      // Single-page-app routing on GitHub Pages. Two jobs:
+      // 1. A visitor sent here by 404.html (deep link such as /workshops)
+      //    arrives as /?/workshops; restore the real path before React reads it.
+      // 2. Old hash links (/#/workshops) redirect to the clean path.
+      (function () {
+        var l = window.location;
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) { return s.replace(/~and~/g, '&'); })
+            .join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+          return;
+        }
+        if (l.hash.indexOf('#/') === 0) {
+          l.replace(l.pathname.replace(/\/$/, '') + l.search + l.hash.slice(1));
+        }
+      })();
+    </script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
