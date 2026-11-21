@@ -192,6 +192,15 @@ const Header = () => {
               </div>
             </div>
             <a
+              href="https://www.nyc-dssg.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-link"
+              onClick={closeMenu}
+            >
+              NYC-DSSG
+            </a>
+            <a
               href="https://givebutter.com/aiforgood"
               target="_blank"
               rel="noopener noreferrer"

@@ -312,9 +312,8 @@ const DataDiplomats = () => {
               </span>
             </h1>
             <p className="dd-hero-sub">
-              From human-centered, frontier AI workshops to a hands-on capstone project, this is your
-              launchpad to lead with empathy, master next-generation tech, and build a real-world
-              solution that lifts up your community.
+              Join the movement to launch next generation of community-driven tech leaders and
+              building socially responsible AI.
             </p>
             <div className="dd-cta-row">
               <a className="button accent" href={APPLY_URL} target="_blank" rel="noopener noreferrer">
