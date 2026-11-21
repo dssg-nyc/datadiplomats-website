@@ -30,11 +30,16 @@ const OPTIONAL_CATEGORIES = [
 const CookieConsent = () => {
   const [visible, setVisible] = useState(() => readConsent() === null);
   const [choices, setChoices] = useState(() => readConsent() || defaultPreferences());
+  // Collapsed by default: a compact card with accept/reject and a
+  // Preferences link. Opening settings from the footer or the legal pages
+  // goes straight to the expanded preferences view.
+  const [expanded, setExpanded] = useState(false);
   const gpc = hasGlobalPrivacyControl();
 
   useEffect(() => {
     const openSettings = () => {
       setChoices(readConsent() || defaultPreferences());
+      setExpanded(true);
       setVisible(true);
     };
 
@@ -51,6 +56,9 @@ const CookieConsent = () => {
     return null;
   }
 
+  const acceptAll = () => finish({ embeds: true, analytics: true, advertising: true });
+  const rejectNonEssential = () => finish({ embeds: false, analytics: false, advertising: false });
+
   return (
     <div className="consent-banner" role="dialog" aria-label="Cookie and privacy preferences">
       <div className="consent-inner">
@@ -65,60 +73,88 @@ const CookieConsent = () => {
           {gpc ? ' We detected a Global Privacy Control signal and are keeping advertising off.' : ''}
         </p>
 
-        <ul className="consent-options">
-          <li>
-            <label>
-              <input type="checkbox" checked disabled />
-              {' '}
-              <strong>Essential</strong>
-              {' '}
-              (always on)
-            </label>
-            <span>Remembers this choice and keeps the site working.</span>
-          </li>
-          {OPTIONAL_CATEGORIES.map(({ key, label, text }) => (
-            <li key={key}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={!!choices[key] && !(key === 'advertising' && gpc)}
-                  disabled={key === 'advertising' && gpc}
-                  onChange={(event) => setChoices({
-                    ...choices,
-                    [key]: event.target.checked,
-                  })}
-                />
-                {' '}
-                <strong>{label}</strong>
-              </label>
-              <span>{text}</span>
-            </li>
-          ))}
-        </ul>
+        {expanded ? (
+          <>
+            <ul className="consent-options">
+              <li>
+                <label>
+                  <input type="checkbox" checked disabled />
+                  {' '}
+                  <strong>Essential</strong>
+                  {' '}
+                  (always on)
+                </label>
+                <span>Remembers this choice and keeps the site working.</span>
+              </li>
+              {OPTIONAL_CATEGORIES.map(({ key, label, text }) => (
+                <li key={key}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={!!choices[key] && !(key === 'advertising' && gpc)}
+                      disabled={key === 'advertising' && gpc}
+                      onChange={(event) => setChoices({
+                        ...choices,
+                        [key]: event.target.checked,
+                      })}
+                    />
+                    {' '}
+                    <strong>{label}</strong>
+                  </label>
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
 
-        <div className="consent-actions">
-          <button
-            type="button"
-            className="consent-btn consent-btn-primary"
-            onClick={() => finish(choices)}
-          >
-            Save choices
-          </button>
-          <button
-            type="button"
-            className="consent-btn consent-btn-primary"
-            onClick={() => finish({ embeds: false, analytics: false, advertising: false })}
-          >
-            Reject non-essential
-          </button>
-          <button
-            type="button"
-            className="consent-btn consent-btn-primary"
-            onClick={() => finish({ embeds: true, analytics: true, advertising: true })}
-          >
-            Accept all
-          </button>
-        </div>
+            <div className="consent-actions consent-actions-expanded">
+              <button
+                type="button"
+                className="consent-btn consent-btn-primary"
+                onClick={() => finish(choices)}
+              >
+                Save choices
+              </button>
+              <button
+                type="button"
+                className="consent-btn consent-btn-primary"
+                onClick={rejectNonEssential}
+              >
+                Reject non-essential
+              </button>
+              <button
+                type="button"
+                className="consent-btn consent-btn-primary"
+                onClick={acceptAll}
+              >
+                Accept all
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="consent-actions consent-actions-compact">
+            <button
+              type="button"
+              className="consent-btn consent-btn-primary"
+              onClick={acceptAll}
+            >
+              Accept all
+            </button>
+            <button
+              type="button"
+              className="consent-btn consent-btn-primary"
+              onClick={rejectNonEssential}
+            >
+              Reject non-essential
+            </button>
+            <button
+              type="button"
+              className="consent-btn-link"
+              onClick={() => setExpanded(true)}
+            >
+              Preferences
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
