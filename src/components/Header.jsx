@@ -200,6 +200,7 @@ const Header = () => {
             >
               NYC-DSSG
             </a>
+            {location.pathname !== '/give' && (
             <a
               href="https://givebutter.com/aiforgood"
               target="_blank"
@@ -209,6 +210,7 @@ const Header = () => {
             >
               Donate
             </a>
+            )}
           </nav>
         </div>
       </header>

@@ -19,7 +19,7 @@ const SearchSteps = ({ platformId }) => {
   const steps = platform.steps || [
     'Open your employer’s giving or matching portal from your company’s internal site or benefits page.',
     `Search for ${org.name} or EIN ${org.ein}.`,
-    'Make your gift. If the portal has a matching option, request the match there.',
+    'Make your gift, then check your employer’s instructions for requesting a match. Some programs need a separate request.',
   ];
   return (
     <>
@@ -54,7 +54,7 @@ const EmployerResult = ({ employer }) => (
     <SearchSteps platformId={employer.platform} />
     <p className="give-note">
       Source: <a href={employer.source.url} target="_blank" rel="noopener noreferrer">{employer.source.label}</a>.
-      Your employer sets the match and may review it after your gift, so the match can arrive later than your own donation.
+      Your employer sets the match rules and timing, and the match may come after your own gift.
     </p>
   </article>
 );
@@ -71,7 +71,7 @@ const Fallback = ({ query }) => (
     </ol>
     <p className="give-note">
       Found your employer’s portal and it does not list us?{' '}
-      <a href={EMAIL}>Email us</a> with the company name. We will check it and add it here.
+      <a href={EMAIL}>Contact us</a> with the company name.
     </p>
   </article>
 );
@@ -166,7 +166,7 @@ const Give = () => (
     />
 
     <PageIntro eyebrow="Give" title={<>Give once. <em>Ask your employer to match it.</em></>}>
-      Three ways to support Data Diplomats. Many employers also match gifts, and it takes a few extra minutes.
+      Ways to support Data Diplomats, including through your employer’s workplace giving or matching program.
     </PageIntro>
 
     <section className="give-section" aria-labelledby="give-ways-title">
@@ -179,13 +179,13 @@ const Give = () => (
           <article className="paper-card accent-orange give-card">
             <span className="portfolio-kicker tint-orange">Direct</span>
             <h3 className="give-card-title">Give directly</h3>
-            <p>Our direct online gift page is being confirmed. To give by card or check now, email us and we will send you the details.</p>
-            <a className="button accent" href={EMAIL}>Email us to give</a>
+            <p>Direct online giving is not available on this page yet. For questions about giving, contact us.</p>
+            <a className="button quiet" href={EMAIL}>Contact us</a>
           </article>
           <article className="paper-card accent-green give-card">
             <span className="portfolio-kicker tint-green">Donor-advised fund</span>
             <h3 className="give-card-title">Recommend a grant</h3>
-            <p>If you hold a donor-advised fund, recommend a grant to <strong>{org.name}</strong>. Your fund sponsor will ask for our legal name and EIN.</p>
+            <p>If you hold a donor-advised fund, recommend a grant to <strong>{org.name}</strong>, the name on our IRS records. Your fund sponsor will ask for the organization name and EIN.</p>
             <p className="give-ein">EIN {org.ein}</p>
           </article>
           <article className="paper-card accent-blue give-card">
@@ -214,8 +214,8 @@ const Give = () => (
       <div className="give-wrap">
         <div className="portfolio-cta">
           <div>
-            <h2 className="portfolio-cta-title" id="give-help-title">Want to talk about a larger gift?</h2>
-            <p className="portfolio-cta-body">Book a call or email us about sponsoring a Data Diplomat.</p>
+            <h2 className="portfolio-cta-title" id="give-help-title">Questions about giving?</h2>
+            <p className="portfolio-cta-body">Book a call or email us about supporting a Data Diplomat.</p>
           </div>
           <div className="give-cta-actions">
             <a className="button accent" href={siteProperties.calendlyUrl} target="_blank" rel="noopener noreferrer">Book a free call</a>

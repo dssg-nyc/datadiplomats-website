@@ -9,14 +9,14 @@
       "steps": [
         "Log in to Fidelity NetBenefits through your employer.",
         "Open Workplace Giving and search for Data Diplomats for Nonprofits in Find Your Impact.",
-        "Choose Donate. If your employer offers a match, the platform handles the request and your employer reviews it."
+        "Choose Donate. Then check your employer’s matching instructions, since whether and how a match is requested depends on the employer."
       ],
       "stepsSource": { "label": "Steps as one employer (CSL Behring) describes them. Yours may differ.", "url": "https://www.cslbenefits.com/csl/giving-tuesday" }
     },
     "benevity": {
       "name": "Benevity",
       "ready": false,
-      "readyNote": "We are confirming our current eligibility on Benevity. Email us before giving through it, or choose another route."
+      "readyNote": "We are confirming our current eligibility on Benevity. Contact us before giving through it, or choose another route."
     },
     "other": {
       "name": "Your employer's giving portal",
