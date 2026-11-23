@@ -12,6 +12,7 @@ const MORE_LINKS = [
   { label: 'AI Workshops', to: '/workshops' },
   { label: 'Research', to: '/research' },
   { label: 'Apps', to: '/apps' },
+  { label: 'Give through your employer', to: '/give' },
 ];
 
 const CONNECT_LINKS = [

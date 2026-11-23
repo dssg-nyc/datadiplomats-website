@@ -6,6 +6,7 @@ import DataDiplomats from './components/DataDiplomats';
 import Apps from './components/Apps';
 import Research from './components/Research';
 import Partner from './components/Partner';
+import Give from './components/Give';
 import Workshops from './components/Workshops';
 import ScrollToTop from './components/ScrollToTop';
 import CookieConsent from './components/CookieConsent';
@@ -31,6 +32,7 @@ function App() {
           <Route path="/workshops" element={<Workshops />} />
           <Route path="/research" element={<Research />} />
           <Route path="/partner" element={<Partner />} />
+          <Route path="/give" element={<Give />} />
           <Route path="/apps" element={<Apps />} />
           <Route path="/portfolio" element={<Navigate to="/apps" replace />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
