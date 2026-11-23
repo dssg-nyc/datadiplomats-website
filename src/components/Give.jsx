@@ -185,7 +185,7 @@ const Give = () => (
           <article className="paper-card accent-green give-card">
             <span className="portfolio-kicker tint-green">Donor-advised fund</span>
             <h3 className="give-card-title">Recommend a grant</h3>
-            <p>If you hold a donor-advised fund, recommend a grant to <strong>{org.name}</strong>, the name on our IRS records. Your fund sponsor will ask for the organization name and EIN.</p>
+            <p>If you hold a donor-advised fund, recommend a grant to <strong>{org.name}</strong>. Your fund sponsor will ask for the organization name and EIN.</p>
             <p className="give-ein">EIN {org.ein}</p>
           </article>
           <article className="paper-card accent-blue give-card">
