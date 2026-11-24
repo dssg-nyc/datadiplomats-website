@@ -39,7 +39,7 @@ const PlatformStatus = ({ platformId }) => {
   const platform = platforms[platformId] || platforms.other;
   return (
     <p className={`give-status ${platform.ready ? 'is-ready' : 'is-pending'}`}>
-      <strong>{platform.ready ? 'Ready for gifts' : 'Not confirmed yet'}</strong> {platform.readyNote}
+      <strong>{platform.ready ? 'Our setup is complete' : 'Not confirmed yet'}</strong> {platform.readyNote}
     </p>
   );
 };
