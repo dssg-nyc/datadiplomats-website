@@ -200,7 +200,7 @@ const Header = () => {
             >
               NYC-DSSG
             </a>
-            {location.pathname !== '/give' && (
+            {!location.pathname.startsWith('/give') && (
             <a
               href="https://givebutter.com/aiforgood"
               target="_blank"

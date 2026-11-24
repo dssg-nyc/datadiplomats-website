@@ -95,7 +95,7 @@ const Footer = () => {
                   {link.label}
                 </a>
               ))}
-              {pathname !== '/give' && (
+              {!pathname.startsWith('/give') && (
               <a
                 className="footer-donate"
                 href="https://givebutter.com/aiforgood"

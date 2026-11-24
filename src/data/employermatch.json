@@ -1,6 +1,9 @@
 {
-  "checkedOn": "2026-11-23",
-  "org": { "name": "Data Diplomats for Nonprofits", "ein": "41-4925712" },
+  "checkedOn": "2026-11-24",
+  "org": {
+    "name": "Data Diplomats for Nonprofits",
+    "ein": "41-4925712"
+  },
   "platforms": {
     "fidelity": {
       "name": "Fidelity Workplace Giving",
@@ -11,12 +14,15 @@
         "Open Workplace Giving and search for Data Diplomats for Nonprofits in Find Your Impact.",
         "Choose Donate. Then check your employer’s matching instructions, since whether and how a match is requested depends on the employer."
       ],
-      "stepsSource": { "label": "Steps as one employer (CSL Behring) describes them. Yours may differ.", "url": "https://www.cslbenefits.com/csl/giving-tuesday" }
+      "stepsSource": {
+        "label": "Steps as one employer (CSL Behring) describes them. Yours may differ.",
+        "url": "https://www.cslbenefits.com/csl/giving-tuesday"
+      }
     },
     "benevity": {
       "name": "Benevity",
-      "ready": false,
-      "readyNote": "We are confirming our current eligibility on Benevity. Contact us before giving through it, or choose another route."
+      "ready": true,
+      "readyNote": "Data Diplomats for Nonprofits has a completed Benevity profile, self-certification and approved payout method (checked November 24, 2026). Each employer sets its own eligibility and rules, so check yours."
     },
     "other": {
       "name": "Your employer's giving portal",
@@ -28,42 +34,73 @@
     {
       "id": "microsoft",
       "name": "Microsoft",
-      "aliases": ["msft", "microsoft corporation"],
+      "aliases": [
+        "msft",
+        "microsoft corporation"
+      ],
       "platform": "benevity",
       "program": "Microsoft's published program matches eligible gifts 1:1 up to a combined $15,000 per employee per year, and charities must be registered with Benevity.",
-      "source": { "label": "Microsoft: Max the Match", "url": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/MaxTheMatch.pdf" }
+      "source": {
+        "label": "Microsoft: Max the Match",
+        "url": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/MaxTheMatch.pdf"
+      }
     },
     {
       "id": "salesforce",
       "name": "Salesforce",
-      "aliases": ["salesforce.com", "sfdc"],
+      "aliases": [
+        "salesforce.com",
+        "sfdc"
+      ],
       "platform": "other",
       "program": "Salesforce publishes its employee giving and volunteering programs. We have not confirmed which portal it uses or its current match limit from Salesforce itself.",
-      "source": { "label": "Salesforce: employee volunteering and giving", "url": "https://www.salesforce.com/company/philanthropy/employee-volunteering-giving/" }
+      "source": {
+        "label": "Salesforce: employee volunteering and giving",
+        "url": "https://www.salesforce.com/company/philanthropy/employee-volunteering-giving/"
+      }
     },
     {
       "id": "apple",
       "name": "Apple",
-      "aliases": ["apple inc"],
+      "aliases": [
+        "apple inc"
+      ],
       "platform": "benevity",
       "program": "Apple's matching gifts guide says the program is run through Benevity and has its own eligibility rules for employees and charities.",
-      "source": { "label": "Apple Matching Gifts Program guide (hosted by a matching-gift vendor)", "url": "https://forms.matchinggifts.com/AppleGuide.pdf" }
+      "source": {
+        "label": "Apple Matching Gifts Program guide (hosted by a matching-gift vendor)",
+        "url": "https://forms.matchinggifts.com/AppleGuide.pdf"
+      }
     },
     {
       "id": "fidelity-workplace-giving",
       "name": "My employer uses Fidelity Workplace Giving",
-      "aliases": ["fidelity", "netbenefits", "fidelity workplace giving", "fidelity giving"],
+      "aliases": [
+        "fidelity",
+        "netbenefits",
+        "fidelity workplace giving",
+        "fidelity giving"
+      ],
       "platform": "fidelity",
       "program": "Whether your employer matches gifts, and how much, is your employer's policy.",
-      "source": { "label": "Fidelity Workplace Giving for employers", "url": "https://www.fidelityworkplace.com/s/giving-employee-engagement" }
+      "source": {
+        "label": "Fidelity Workplace Giving for employers",
+        "url": "https://www.fidelityworkplace.com/s/giving-employee-engagement"
+      }
     },
     {
       "id": "benevity-generic",
       "name": "My employer uses Benevity",
-      "aliases": ["benevity", "causes portal"],
+      "aliases": [
+        "benevity",
+        "causes portal"
+      ],
       "platform": "benevity",
       "program": "Each company has its own Benevity site and rules. Use the link your employer gives you rather than a guessed address.",
-      "source": { "label": "Benevity Causes: self-certification", "url": "https://causeshelp.benevity.org/hc/en-us/articles/360055709952-What-is-the-Self-Certification-Declaration" }
+      "source": {
+        "label": "Benevity Causes: self-certification",
+        "url": "https://causeshelp.benevity.org/hc/en-us/articles/360055709952-What-is-the-Self-Certification-Declaration"
+      }
     }
   ]
 }
