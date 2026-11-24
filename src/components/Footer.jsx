@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Footer.css';
 import siteProperties from '../data/siteproperties.json';
 import socialIcons from '../data/socialicons.json';
@@ -12,6 +12,7 @@ const MORE_LINKS = [
   { label: 'AI Workshops', to: '/workshops' },
   { label: 'Research', to: '/research' },
   { label: 'Apps', to: '/apps' },
+  { label: 'Give through your employer', to: '/give' },
 ];
 
 const CONNECT_LINKS = [
@@ -22,6 +23,7 @@ const CONNECT_LINKS = [
 ];
 
 const Footer = () => {
+  const { pathname } = useLocation();
   return (
     <footer className="modern-footer">
       <div className="footer-inner">
@@ -93,6 +95,7 @@ const Footer = () => {
                   {link.label}
                 </a>
               ))}
+              {pathname !== '/give' && (
               <a
                 className="footer-donate"
                 href="https://givebutter.com/aiforgood"
@@ -101,6 +104,7 @@ const Footer = () => {
               >
                 Donate
               </a>
+              )}
             </nav>
           </div>
         </div>
