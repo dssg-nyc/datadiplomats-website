@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/workshops", "destination": "/index.html" },
+    { "source": "/research", "destination": "/index.html" },
+    { "source": "/apps", "destination": "/index.html" },
+    { "source": "/partner", "destination": "/index.html" },
+    { "source": "/privacy", "destination": "/index.html" },
+    { "source": "/cookies", "destination": "/index.html" },
+    { "source": "/ai-policy", "destination": "/index.html" },
+    { "source": "/diplomats", "destination": "/index.html" },
+    { "source": "/portfolio", "destination": "/index.html" }
+  ]
+}
