@@ -9,6 +9,7 @@ import Partner from './components/Partner';
 import Give from './components/Give';
 import Workshops from './components/Workshops';
 import ScrollToTop from './components/ScrollToTop';
+import DonateBanner from './components/DonateBanner';
 import CookieConsent from './components/CookieConsent';
 import PrivacyPolicy from './components/legal/PrivacyPolicy';
 import CookiePolicy from './components/legal/CookiePolicy';
@@ -22,9 +23,12 @@ const ToHome = () => {
 };
 
 function App() {
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
   return (
-      <div className="App">
+      <div className={isHome ? 'App App--donate-banner' : 'App'}>
         <ScrollToTop />
+        {isHome && <DonateBanner />}
         <Header />
         <Routes>
           <Route path="/" element={<DataDiplomats />} />
