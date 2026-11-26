@@ -1,5 +1,11 @@
 # Build the Vite app and deploy dist/ to GitHub Pages.
 # Uploading the repo root serves raw .jsx, which Chrome rejects (MIME type text/jsx).
+#
+# Build and deploy must be separate jobs. When upload-pages-artifact and
+# deploy-pages run in the same job, deploy-pages can list artifacts before
+# the just-finalized github-pages upload is visible (actions/deploy-pages#451).
+# Do not re-run a failed deploy in that layout: a second upload then fails
+# with "Multiple artifacts named github-pages".
 name: Deploy static content to Pages
 
 on:
@@ -17,10 +23,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -58,6 +61,13 @@ jobs:
         with:
           path: ./dist
 
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
