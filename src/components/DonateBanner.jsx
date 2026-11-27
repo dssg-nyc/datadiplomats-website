@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './DonateBanner.css';
 
@@ -6,6 +6,104 @@ import './DonateBanner.css';
 // short full-artwork dwell play out with the media fully in view. Kept short
 // so it never becomes a scroll trap.
 const HOLD = 240;
+
+// The instruction text the "Copy Donation Prompt" button copies. The donor pastes
+// it into their assistant (Claude, ChatGPT, Instinct, Muse or any other) to
+// start the donation journey: check the employer's matching program first,
+// otherwise give directly on Givebutter. It asks the assistant to stop
+// before any payment or match submission so the donor confirms the amount;
+// the donor can override that in their chat. Keep wording changes to this
+// one constant.
+const AI_PROMPT = `Please help me donate to Data Diplomats for Nonprofits, Inc. (EIN 41-4925712), a 501(c)(3) nonprofit. Start by checking whether my employer matches charitable donations.
+
+Employer matching guide: https://www.datadiplomats.org/give/
+Donation page: https://givebutter.com/aiforgood
+
+1. Ask me who my employer is, then help me check whether they match charitable donations, using the guide above for the portals where this nonprofit is set up. If you can't verify my employer's program, tell me you couldn't confirm it. Don't conclude there's no match.
+2. If a match is available, help me follow that program's steps to make my gift and request the match. If there's no match, or I'd rather give directly, ask how much I'd like to give and walk me through the donation page.
+3. Either way - matched or direct - stop before any payment or match submission. I'll review the final amount and confirm it myself.
+
+If you can't open links or complete a step, give me the link and the exact steps to do it myself.`;
+
+// Copies AI_PROMPT to the clipboard. Clipboard access needs HTTPS and a real
+// tap, both satisfied here. Falls back to the legacy textarea copy, then to a
+// visible panel the donor can copy from by hand.
+function CopyForAiButton() {
+  const [state, setState] = useState('idle');
+  const timerRef = useRef(null);
+
+  useEffect(() => () => {
+    if (timerRef.current !== null) window.clearTimeout(timerRef.current);
+  }, []);
+
+  const copy = async () => {
+    let copied = false;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(AI_PROMPT);
+        copied = true;
+      }
+    } catch {
+      copied = false;
+    }
+    if (!copied) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = AI_PROMPT;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        copied = document.execCommand('copy');
+        document.body.removeChild(ta);
+      } catch {
+        copied = false;
+      }
+    }
+    if (copied) {
+      setState('copied');
+      if (timerRef.current !== null) window.clearTimeout(timerRef.current);
+      timerRef.current = window.setTimeout(() => setState('idle'), 2000);
+    } else {
+      // The panel grows the banner; let the scroll handler re-measure it.
+      setState('manual');
+      window.requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
+    }
+  };
+
+  return (
+    <span className="donate-banner-ai">
+      <button
+        type="button"
+        className="donate-banner-ai-button"
+        onClick={copy}
+        aria-describedby="donate-banner-ai-help"
+      >
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false">
+          <rect x="9" y="9" width="12" height="12" rx="2" fill="none" stroke="currentColor" strokeWidth="2" />
+          <path d="M5 15V5a2 2 0 0 1 2-2h10" fill="none" stroke="currentColor" strokeWidth="2" />
+        </svg>
+        <span aria-live="polite">{state === 'copied' ? 'Copied' : 'Copy Donation Prompt'}</span>
+      </button>
+      <span id="donate-banner-ai-help" className="donate-banner-ai-help">
+        Paste into your AI agent to donate.
+      </span>
+      {state === 'manual' && (
+        <span className="donate-banner-ai-manual">
+          <label htmlFor="donate-banner-ai-text">Copy these instructions into your AI assistant:</label>
+          <textarea
+            id="donate-banner-ai-text"
+            readOnly
+            value={AI_PROMPT}
+            rows={6}
+            onFocus={(e) => e.target.select()}
+          />
+        </span>
+      )}
+    </span>
+  );
+}
 
 // Holiday-campaign donation banner above the site header, adapted from the
 // Mozilla Foundation homepage's Giving Tuesday pushdown banner
@@ -80,9 +178,12 @@ export default function DonateBanner() {
             <p className="donate-banner-subtitle">
               Proceeds will aid our 2027 hackathon series from mental health to museum tech to transportation.
             </p>
-            <Link className="donate-banner-cta" to="/give">
-              Donate <span aria-hidden="true">&rarr;</span>
-            </Link>
+            <div className="donate-banner-actions">
+              <Link className="donate-banner-cta" to="/give">
+                Donate <span aria-hidden="true">&rarr;</span>
+              </Link>
+              <CopyForAiButton />
+            </div>
           </div>
           <div className="donate-banner-media">
             <img
