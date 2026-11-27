@@ -7,7 +7,7 @@ import './DonateBanner.css';
 // so it never becomes a scroll trap.
 const HOLD = 240;
 
-// The instruction text the "Copy for my AI" button copies. The donor pastes
+// The instruction text the "Copy instructions" button copies. The donor pastes
 // it into their assistant (Claude, ChatGPT, Instinct, Muse or any other) to
 // start the donation journey: check the employer's matching program first,
 // otherwise give directly on Givebutter. It asks the assistant to stop
@@ -78,14 +78,17 @@ function CopyForAiButton() {
         type="button"
         className="donate-banner-ai-button"
         onClick={copy}
-        aria-label="Copy instructions for your AI assistant"
+        aria-describedby="donate-banner-ai-help"
       >
         <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false">
           <rect x="9" y="9" width="12" height="12" rx="2" fill="none" stroke="currentColor" strokeWidth="2" />
           <path d="M5 15V5a2 2 0 0 1 2-2h10" fill="none" stroke="currentColor" strokeWidth="2" />
         </svg>
-        <span aria-live="polite">{state === 'copied' ? 'Copied' : 'Copy for my AI'}</span>
+        <span aria-live="polite">{state === 'copied' ? 'Copied' : 'Copy instructions'}</span>
       </button>
+      <span id="donate-banner-ai-help" className="donate-banner-ai-help">
+        Paste into your AI agent to donate or check employer matching.
+      </span>
       {state === 'manual' && (
         <span className="donate-banner-ai-manual">
           <label htmlFor="donate-banner-ai-text">Copy these instructions into your AI assistant:</label>
