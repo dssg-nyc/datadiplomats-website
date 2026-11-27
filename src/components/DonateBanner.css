@@ -40,6 +40,13 @@
   max-width: 34rem;
 }
 
+.donate-banner-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
 .donate-banner-cta {
   display: inline-block;
   background: var(--surface);
@@ -48,6 +55,57 @@
   padding: 12px 26px;
   border-radius: 999px;
   text-decoration: none;
+}
+
+/* "Copy for my AI": secondary outline button beside the filled Donate CTA. */
+.donate-banner-ai {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.donate-banner-ai-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--surface);
+  border: 1px solid rgba(255, 253, 248, 0.7);
+  border-radius: 999px;
+  padding: 11px 20px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.donate-banner-ai-button:hover,
+.donate-banner-ai-button:focus-visible {
+  background: rgba(255, 253, 248, 0.14);
+}
+
+/* Manual-copy fallback, shown only if clipboard access fails. */
+.donate-banner-ai-manual {
+  display: block;
+  flex-basis: 100%;
+  margin-top: var(--space-sm);
+  max-width: 34rem;
+}
+
+.donate-banner-ai-manual label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.donate-banner-ai-manual textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background: var(--surface);
+  color: #1a1a1a;
 }
 
 .donate-banner-media {
