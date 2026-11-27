@@ -42,7 +42,7 @@
 
 .donate-banner-actions {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   gap: var(--space-sm);
 }
@@ -57,11 +57,20 @@
   text-decoration: none;
 }
 
-/* "Copy for my AI": secondary outline button beside the filled Donate CTA. */
+/* "Copy instructions": secondary outline button beside the filled Donate CTA. */
 .donate-banner-ai {
   display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.donate-banner-ai-help {
+  display: block;
+  margin-top: 6px;
+  max-width: 15rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  opacity: 0.9;
 }
 
 .donate-banner-ai-button {
