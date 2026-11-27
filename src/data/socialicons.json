@@ -1,5 +1,5 @@
 {
-  "gitHub": "images/social/github.svg",
-  "linkedIn": "images/social/linkedin.svg",
-  "substack": "images/social/substack.svg"
+  "gitHub": "/images/social/github.svg",
+  "linkedIn": "/images/social/linkedin.svg",
+  "substack": "/images/social/substack.svg"
 }
