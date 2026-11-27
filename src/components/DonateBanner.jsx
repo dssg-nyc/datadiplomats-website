@@ -11,16 +11,17 @@ const HOLD = 240;
 // it into their assistant (Claude, ChatGPT, Instinct, Muse or any other) to
 // start the donation journey: check the employer's matching program first,
 // otherwise give directly on Givebutter. It asks the assistant to stop
-// before any payment so the donor confirms the amount; the donor can
-// override that in their chat. Keep wording changes to this one constant.
+// before any payment or match submission so the donor confirms the amount;
+// the donor can override that in their chat. Keep wording changes to this
+// one constant.
 const AI_PROMPT = `Please help me donate to Data Diplomats for Nonprofits, Inc. (EIN 41-4925712), a 501(c)(3) nonprofit. Start by checking whether my employer matches charitable donations.
 
 Employer matching guide: https://www.datadiplomats.org/give/
 Donation page: https://givebutter.com/aiforgood
 
 1. Ask me who my employer is, then help me check whether they match charitable donations, using the guide above for the portals where this nonprofit is set up. If you can't verify my employer's program, tell me you couldn't confirm it. Don't conclude there's no match.
-2. If a match is available, help me follow that program's steps to make my gift and request the match.
-3. If there's no match, or I'd rather give directly, ask how much I'd like to give and walk me through the donation page. Stop before any payment is submitted. I'll review the final amount and confirm it myself.
+2. If a match is available, help me follow that program's steps to make my gift and request the match. If there's no match, or I'd rather give directly, ask how much I'd like to give and walk me through the donation page.
+3. Either way - matched or direct - stop before any payment or match submission. I'll review the final amount and confirm it myself.
 
 If you can't open links or complete a step, give me the link and the exact steps to do it myself.`;
 
