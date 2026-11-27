@@ -2,8 +2,9 @@
   background: var(--paper);
 }
 
-/* App.css gives every <section> a flex centre and 6rem padding; this one
-   only holds the button under the intro. */
+/* App.css gives every <section> a flex centre and 6rem padding; these set
+   their own layout. */
+section.research-feature,
 section.page-cta-row {
   display: block;
   max-width: 1200px;
@@ -11,8 +12,170 @@ section.page-cta-row {
   padding: 0 var(--space-lg) var(--space-3xl);
 }
 
+.study-card {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+/* The study itself is dark; this panel previews that look as a lit exhibit. */
+.study-visual {
+  display: flex;
+  background:
+    radial-gradient(120% 80% at 20% 0%, rgba(249, 115, 22, 0.22), transparent 60%),
+    radial-gradient(90% 70% at 100% 100%, rgba(59, 130, 246, 0.18), transparent 60%),
+    #080c14;
+  color: #f1f5f9;
+  text-decoration: none;
+}
+
+.study-visual:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.study-visual-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-xl, 2.5rem) var(--space-lg);
+  width: 100%;
+}
+
+.study-visual-kicker,
+.study-visual-cta {
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fb923c;
+}
+
+.study-visual-cta {
+  margin-top: auto;
+  color: #cbd5e1;
+  transition: color 0.2s ease;
+}
+
+.study-visual:hover .study-visual-cta {
+  color: #fff;
+}
+
+.study-eras {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.study-eras li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.study-era-n {
+  font-family: Georgia, serif;
+  font-weight: 700;
+  color: #fb923c;
+}
+
+.study-era-name {
+  font-weight: 600;
+}
+
+.study-era-years {
+  font-family: ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.study-body {
+  padding: var(--space-xl, 2.5rem) var(--space-lg);
+}
+
+.study-lede {
+  color: var(--gray-700);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: var(--space-sm) 0 var(--space-md);
+}
+
+.study-findings {
+  list-style: none;
+  margin: 0 0 var(--space-lg);
+  padding: 0;
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.study-findings li {
+  padding-left: var(--space-sm);
+  border-left: 3px solid var(--accent-orange);
+}
+
+.study-findings h3 {
+  font-size: 1rem;
+  margin: 0 0 0.2rem;
+  color: var(--ink);
+}
+
+.study-findings p {
+  margin: 0;
+  color: var(--gray-600);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.study-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.study-secondary {
+  font-weight: 600;
+  color: var(--primary-blue);
+}
+
+.research-follow {
+  margin: 0 0 var(--space-sm);
+  color: var(--gray-700);
+}
+
+@media (max-width: 900px) {
+  .study-card {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
+  section.research-feature,
   section.page-cta-row {
     padding: 0 var(--space-md) var(--space-2xl);
+  }
+
+  .study-body,
+  .study-visual-inner {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .study-eras li {
+    grid-template-columns: 2rem 1fr;
+  }
+
+  .study-era-years {
+    grid-column: 2;
   }
 }

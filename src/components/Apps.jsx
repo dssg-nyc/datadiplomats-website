@@ -41,7 +41,7 @@ const Apps = () => (
                 tabIndex={-1}
                 aria-hidden="true"
               >
-                <img src={`/${story.image}`} alt="" loading="lazy" />
+                <img src={story.image} alt="" loading="lazy" />
               </a>
               <div className="portfolio-body">
                 <span className={`portfolio-kicker tint-${TINTS[index % 3]}`}>{story.kicker}</span>

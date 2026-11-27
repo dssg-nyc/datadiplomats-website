@@ -4,14 +4,49 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/workshops", "destination": "/index.html" },
-    { "source": "/research", "destination": "/index.html" },
-    { "source": "/apps", "destination": "/index.html" },
-    { "source": "/partner", "destination": "/index.html" },
-    { "source": "/privacy", "destination": "/index.html" },
-    { "source": "/cookies", "destination": "/index.html" },
-    { "source": "/ai-policy", "destination": "/index.html" },
-    { "source": "/diplomats", "destination": "/index.html" },
-    { "source": "/portfolio", "destination": "/index.html" }
+    {
+      "source": "/research/evolution-of-human-skills",
+      "destination": "https://evolution-of-human-skills.vercel.app/research/evolution-of-human-skills/"
+    },
+    {
+      "source": "/research/evolution-of-human-skills/:path*",
+      "destination": "https://evolution-of-human-skills.vercel.app/research/evolution-of-human-skills/:path*"
+    },
+    {
+      "source": "/workshops",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/research",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/apps",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/partner",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/cookies",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ai-policy",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/diplomats",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/index.html"
+    }
   ]
 }
