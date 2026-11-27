@@ -174,7 +174,8 @@
   .donate-banner-inner {
     grid-template-columns: 1fr;
     gap: var(--space-md);
-    padding: var(--space-md) var(--space-md) var(--space-2xl, 4rem);
+    /* Extra bottom room so the Skip Down control clears the button row. */
+    padding: var(--space-md) var(--space-md) 5.5rem;
   }
 
   .donate-banner-title {
